@@ -1,0 +1,26 @@
+{
+    "name": "example-worker-animal-pictures",
+    "author": "Adobe Inc.",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "description": "Asset Compute example custom worker - Animal Pictures",
+    "repository": "adobe/example-worker-animal-pictures",
+    "dependencies": {
+        "@adobe/httptransfer": "^1.0.1",
+        "@adobe/asset-compute-sdk": "^1.0.2"
+    },
+    "devDependencies": {
+        "@adobe/eslint-config-asset-compute": "^1.0.0"
+    },
+    "scripts": {
+        "test": "nui test-worker",
+        "postest": "eslint ./"
+    },
+    "keywords": [
+        "asset compute",
+        "adobe",
+        "serverless",
+        "example",
+        "worker"
+    ]
+}
