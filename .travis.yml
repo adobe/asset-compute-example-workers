@@ -24,4 +24,4 @@ env:
   - TEST_DIR=projects/worker-animal-pictures
 
 script:
-  - git status && pwd && cd $TEST_DIR && pwd && ls -al && npm install && npm test
+  - cd $TEST_DIR && pwd && npm install && npm test
