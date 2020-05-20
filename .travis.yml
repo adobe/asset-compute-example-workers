@@ -22,6 +22,7 @@ node_js:
 env:
   - TEST_DIR=projects/worker-basic
   - TEST_DIR=projects/worker-animal-pictures
+  - YARN_GPG=no
 
 script:
   - cd $TEST_DIR && pwd && npm install && npm test
