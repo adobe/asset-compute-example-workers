@@ -16,8 +16,6 @@ os:
 
 node_js:
   - "10"
-  - "10.15"
-  - "10.19"
   - "12"
   - "14"
 
@@ -26,4 +24,4 @@ env:
   - TEST_DIR=projects/worker-animal-pictures
 
 script:
-  - cd $TEST_DIR && npm version && npm install && npm test
+  - cd $TEST_DIR && ls -al && npm install && npm test
