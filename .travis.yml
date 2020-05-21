@@ -19,8 +19,16 @@ node_js:
   - "12"
   - "14"
 
-env:
-  - TEST_DIR=projects/worker-animal-pictures
-
+beforeScript:
+  - cd $TEST_DIR
 script:
-  - cd $TEST_DIR && npm install && npm test
+  - npm install && npm test
+
+jobs:
+  include:
+  - name: "worker-animal-pictures"
+    python: "3.5"
+    env: TEST_DIR=projects/worker-animal-pictures
+  - name: "worker-basic"
+    python: "3.5"
+    env: TEST_DIR=projects/worker-basic
