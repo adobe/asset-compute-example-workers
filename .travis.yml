@@ -9,9 +9,6 @@
 # governing permissions and limitations under the License.
 
 language: node_js
-os:
-  - linux
-  - osx
 
 node_js:
   - "10"
