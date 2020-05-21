@@ -21,8 +21,8 @@
     },
     "cross-os": {
         "pretest-cross-os": {
-            "darwin": "rm /Users/travis/.local/share/@adobe/aio-cli/yarn.lock && aio plugins:install @adobe/aio-cli-plugin-asset-compute",
-            "linux": "rm /Users/travis/.local/share/@adobe/aio-cli/yarn.lock && aio plugins:install @adobe/aio-cli-plugin-asset-compute",
+            "darwin": "rm /Users/travis/.local/share/@adobe/aio-cli/yarn.lock || true && aio plugins:install @adobe/aio-cli-plugin-asset-compute",
+            "linux": "rm /Users/travis/.local/share/@adobe/aio-cli/yarn.lock || true && aio plugins:install @adobe/aio-cli-plugin-asset-compute",
             "win32": "aio plugins:install @adobe/aio-cli-plugin-asset-compute"
         },
         "posttest-cross-os": {
