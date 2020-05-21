@@ -15,16 +15,11 @@
         "cross-os": "^1.3.0"
     },
     "scripts": {
-        "pretest": "cross-os pretest-cross-os",
+        "pretest": "aio plugins:install @adobe/aio-cli-plugin-asset-compute",
         "test": "aio asset-compute test-worker",
         "posttest": "cross-os posttest-cross-os"
     },
     "cross-os": {
-        "pretest-cross-os": {
-            "darwin": "aio plugins:install @adobe/aio-cli-plugin-asset-compute",
-            "linux": "aio plugins:install @adobe/aio-cli-plugin-asset-compute",
-            "win32": "aio plugins:install @adobe/aio-cli-plugin-asset-compute"
-        },
         "posttest-cross-os": {
             "darwin": "eslint ./",
             "linux": "eslint ./",
