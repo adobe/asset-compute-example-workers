@@ -11,6 +11,7 @@
 language: node_js
 os:
   - linux
+  - osx
 
 node_js:
   - "10"
@@ -19,6 +20,7 @@ node_js:
 
 env:
   - TEST_DIR=projects/worker-animal-pictures
+  - TEST_DIR=projects/worker-basic
 
 script:
   - cd $TEST_DIR && npm install && npm test
