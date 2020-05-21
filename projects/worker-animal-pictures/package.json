@@ -21,8 +21,8 @@
     },
     "cross-os": {
         "pretest-cross-os": {
-            "darwin": "ls -al /Users/travis/build/adobe/asset-compute-example-workers/ && ls -al /Users/travis/build/adobe/asset-compute-example-workers/projects/worker-animal-pictures/ && aio plugins:install @adobe/aio-cli-plugin-asset-compute",
-            "linux": "ls -al /Users/travis/build/adobe/asset-compute-example-workers/ && ls -al /Users/travis/build/adobe/asset-compute-example-workers/projects/worker-animal-pictures/ && aio plugins:install @adobe/aio-cli-plugin-asset-compute",
+            "darwin": "aio plugins:install @adobe/aio-cli-plugin-asset-compute",
+            "linux": "aio plugins:install @adobe/aio-cli-plugin-asset-compute",
             "win32": "aio plugins:install @adobe/aio-cli-plugin-asset-compute"
         },
         "posttest-cross-os": {
