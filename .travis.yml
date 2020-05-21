@@ -19,10 +19,8 @@ node_js:
   - "12"
   - "14"
 
-beforeScript:
-  - cd $TEST_DIR
 script:
-  - npm install && npm test
+  - cd $TEST_DIR && npm install && npm test
 
 jobs:
   include:
