@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Travis](https://travis-ci.com/adobe/asset-compute-example-workers.svg?branch=master)](https://travis-ci.com/adobe/asset-compute-example-workers)
 
-# asset-compute-example-workers
+# Asset Compute Worker Examples
 
 In the `projects` directory, you will find examples of Asset Compute workers that are based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
