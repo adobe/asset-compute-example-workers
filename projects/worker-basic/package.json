@@ -9,10 +9,8 @@
         "@adobe/asset-compute-sdk": "^1.0.2"
     },
     "devDependencies": {
-        "@adobe/aio-cli": "^3.4.1"
     },
     "scripts": {
-        "pretest": "aio plugins:install @adobe/aio-cli-plugin-asset-compute",
         "test": "aio asset-compute test-worker"
     },
     "keywords": [

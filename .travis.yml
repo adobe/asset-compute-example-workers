@@ -9,7 +9,6 @@
 # governing permissions and limitations under the License.
 
 language: node_js
-
 node_js:
   - "10"
   - "12"
@@ -18,6 +17,11 @@ node_js:
 env:
   - TEST_DIR=projects/worker-animal-pictures
   - TEST_DIR=projects/worker-basic
+
+install:
+  - npm install -g @adobe/aio-cli
+  - aio plugins:install @adobe/aio-cli-plugin-asset-compute
+  - aio info
 
 script:
   - cd $TEST_DIR && npm install && npm test
