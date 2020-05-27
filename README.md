@@ -5,11 +5,11 @@
 
 In the `projects` directory, you will find examples of Asset Compute workers that are based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
-## worker-basic
+## [worker-basic](projects/worker-basic)
 
 Simple example of a 3rd party Asset Compute worker. It generates a rendition by simply copying the source file.
 
-## worker-animal-pictures
+## [worker-animal-pictures](projects/worker-animal-pictures)
 
 Example of a 3rd party Asset Compute worker thatproduces renditions from an HTTP request to an external API based on an incoming parameter.
 
