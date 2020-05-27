@@ -11,7 +11,7 @@ Requirements:
 * [aio cli](https://github.com/adobe/aio-cli)
 
 ### Test
-This executes eslint and the worker test cases located in [tests](tests):
+This runs the worker test cases located in [tests](tests) using [aio](https://github.com/adobe/aio-cli):
 
 ```
 npm test
