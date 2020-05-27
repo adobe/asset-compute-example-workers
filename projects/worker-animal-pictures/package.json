@@ -9,8 +9,6 @@
         "@adobe/httptransfer": "^1.0.1",
         "@adobe/asset-compute-sdk": "^1.0.2"
     },
-    "devDependencies": {
-    },
     "scripts": {
         "test": "aio asset-compute test-worker"
     },
