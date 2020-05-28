@@ -17,6 +17,7 @@ Example of a 3rd party Asset Compute worker thatproduces renditions from an HTTP
 
 Contributions are welcomed! Read the [Contributing Guide](./.github/CONTRIBUTING.md) for more information.
 
+
 ## Licensing
 
 This project is licensed under the Apache V2 License. See [LICENSE](LICENSE) for more information.
