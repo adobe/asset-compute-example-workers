@@ -1,0 +1,21 @@
+{
+    "name": "example-custom-worker",
+    "author": "Adobe Inc.",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "description": "Asset Compute example custom worker",
+    "repository": "adobe/example-custom-worker",
+    "dependencies": {
+        "@adobe/asset-compute-sdk": "^1.0.2"
+    },
+    "scripts": {
+        "test": "aio asset-compute test-worker"
+    },
+    "keywords": [
+        "asset compute",
+        "adobe",
+        "serverless",
+        "example",
+        "worker"
+    ]
+}

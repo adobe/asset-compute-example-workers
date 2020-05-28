@@ -1,0 +1,9 @@
+packages:
+  __APP_PACKAGE__:
+    actions:
+      worker:
+        function: 'worker-basic.js'
+        runtime: 'nodejs:10'
+        web: true
+        annotations:
+          require-adobe-auth: true
