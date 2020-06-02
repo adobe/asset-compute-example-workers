@@ -27,4 +27,4 @@ install:
   - aio info
 
 script:
-  - cd $TEST_DIR && echo 'docker run --help' && npm install && npm test
+  - cd $TEST_DIR && docker run --help && npm install && npm test
