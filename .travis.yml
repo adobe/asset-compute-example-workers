@@ -27,4 +27,9 @@ install:
   - aio info
 
 script:
-  - cd $TEST_DIR && docker run --help && npm install && npm test
+  - |
+    (
+      if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
+        & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
+    )
+  - cd $TEST_DIR && echo $TRAVIS_OS_NAME && npm install && npm test
