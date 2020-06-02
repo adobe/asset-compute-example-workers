@@ -1,8 +1,8 @@
 packages:
   __APP_PACKAGE__:
     actions:
-      worker:
-        function: 'worker.js'
+      worker-basic:
+        function: 'worker-basic.js'
         runtime: 'nodejs:10'
         web: true
         annotations:
