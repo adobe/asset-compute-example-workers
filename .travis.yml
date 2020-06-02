@@ -17,11 +17,11 @@ node_js:
   - "10"
   - "12"
   - "14"
-
+dist: "xenial"
 env:
   - TEST_DIR=projects/worker-animal-pictures
   - TEST_DIR=projects/worker-basic
-
+services: "docker"
 install:
   - npm install -g @adobe/aio-cli
   - aio plugins:install @adobe/aio-cli-plugin-asset-compute
