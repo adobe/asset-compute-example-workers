@@ -27,10 +27,10 @@ install:
   - aio info
 
 script:
-  # - |
-  #   (
-  #     if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
-  #       & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
-  #     fi
-  #   )
+  - |
+    (
+      if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
+        & $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
+      fi
+    )
   - cd $TEST_DIR && echo $TRAVIS_OS_NAME && npm install && npm test
