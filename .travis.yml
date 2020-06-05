@@ -24,7 +24,9 @@ env:
   - TEST_DIR=projects/worker-animal-pictures
   - TEST_DIR=projects/worker-basic
   
-services: "docker"
+services: 
+  - docker
+
 install:
   - npm install -g @adobe/aio-cli
   - aio plugins:install @adobe/aio-cli-plugin-asset-compute
@@ -34,11 +36,10 @@ script:
   - |
     (
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
-        echo $TRAVIS_OS_NAME
+        choco install docker-desktop --pre 
+        choco install docker-cli
         $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
         exit 0
-      else
-        exit 0
       fi
+      exit 0
     )
-  - cd Misplaced $TRAVIS_OS_NAME && npm install && npm test
