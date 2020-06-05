@@ -33,10 +33,12 @@ install:
 script:
   - |
     (
-      echo $TRAVIS_OS_NAME
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
+        echo $TRAVIS_OS_NAME
         $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
+        exit 0
+      else
+        exit 0
       fi
-      exit 0
     )
-  - cd $TEST_DIR && echo $TRAVIS_OS_NAME && npm install && npm test
+  - cd Misplaced $TRAVIS_OS_NAME && npm install && npm test
