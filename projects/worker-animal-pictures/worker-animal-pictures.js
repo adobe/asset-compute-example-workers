@@ -39,11 +39,11 @@ async function renditionCallback(source, rendition) {
     const requestedAnimal = rendition.instructions.animal;
     console.log('Requesting photo of animal: ', requestedAnimal);
 
+    // note: On Windows, may warn about network access on first run
     const url = getUrl(requestedAnimal);
 
     // download file and store it in `rendition.path`
     await downloadFile(url, rendition.path);
-
 }
 
 exports.main = worker(renditionCallback , {
