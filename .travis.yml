@@ -39,7 +39,15 @@ script:
         refreshenv
         $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
         $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchLinuxEngine
-        restart-service *docker*
+
+        net stop docker
+        net stop com.docker.service
+        taskkill /IM "dockerd.exe" /F
+        taskkill /IM "Docker for Windows.exe" /F
+        net start docker
+        net start com.docker.service
+        start "$Env:ProgramFiles\Docker\Docker\Docker for Windows.exe"
+
         cd $TEST_DIR && npm install && npm test
       fi
       exit 0
