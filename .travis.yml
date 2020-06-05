@@ -39,7 +39,7 @@ script:
         choco install docker-desktop --pre 
         choco install docker-cli
         $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
-        exit 0
+        cd $TEST_DIR && npm install && npm test
       fi
       exit 0
     )
