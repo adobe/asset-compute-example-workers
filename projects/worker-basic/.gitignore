@@ -51,7 +51,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+*.env
 
 # next.js build output
 .next
@@ -67,7 +67,7 @@ serverless.yml
 
 
 # AIO
-.aio
+*.aio
 dist/
 
 # Important Documentation

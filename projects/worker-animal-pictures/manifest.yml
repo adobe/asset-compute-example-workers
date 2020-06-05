@@ -1,7 +1,7 @@
 packages:
   __APP_PACKAGE__:
     actions:
-      worker:
+      worker-animal-pictures:
         function: 'worker-animal-pictures.js'
         runtime: 'nodejs:10'
         web: true
