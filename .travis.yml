@@ -47,7 +47,7 @@ script:
 
         docker-cli --version
 
-        "C:\ProgramFiles\\Docker\Docker\DockerCli.exe" -SwitchDaemon
+        powershell $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
 
         powershell restart-service *docker*
 
