@@ -49,7 +49,6 @@ script:
 
         powershell $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon .
 
-        powershell restart-service *docker*
 
         C:\\ProgramData\\chocolatey\\lib\\docker-cli\\tools\\docker.exe pull busybox:latest
       fi
