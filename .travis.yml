@@ -50,7 +50,7 @@ script:
 
         powershell restart-service *docker*
         
-        docker pull busybox:latest
+        $Env:ProgramFiles\Docker\Docker\DockerCli.exe pull busybox:latest
       fi
       exit 0
     )
