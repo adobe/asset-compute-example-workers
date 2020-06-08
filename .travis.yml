@@ -44,8 +44,7 @@ script:
         choco install docker-desktop --pre 
         choco install docker-cli
 
-        C:\\ProgramData\\chocolatey\\lib\\docker-cli\\tools\\docker.exe -SwitchDaemon
-
+        C:\\ProgramFiles\\Docker\\Docker\\DockerCli.exe -SwitchDaemon
         powershell restart-service *docker*
         
         C:\\ProgramData\\chocolatey\\lib\docker-cli\\tools\\docker.exe pull busybox:latest
