@@ -35,19 +35,16 @@ install:
   - aio info
 
 before_script:
+  
+script:
   - |
     (
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
         choco install docker-desktop --pre 
         choco install docker-cli
 
-        source .bash_profile
-        source ~/.bashrc
-
         $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
+        cd $TEST_DIR && npm install && npm test
       fi
       exit 0
     )
-
-script:
-  - cd $TEST_DIR && npm install && npm test
