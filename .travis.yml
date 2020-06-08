@@ -37,6 +37,9 @@ script:
         choco install docker-desktop --pre 
         choco install docker-cli
         refreshenv
+
+        $Host.Version
+        $PSVersionTable.PSVersion
         
         $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
         cd $TEST_DIR && npm install && npm test
