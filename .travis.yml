@@ -10,6 +10,7 @@
 
 # Windows version is 1809
 # Docker version is Docker version 18.09.11, build 6112046bc9
+# SwitchLinuxEngine
 
 language: node_js
 
@@ -46,8 +47,7 @@ script:
 
         docker-cli --version
 
-        C:\\Program\" "Files\\Docker\\Docker\\DockerCli.exe -SwitchDaemon
-        C:\\Program\" "Files\\Docker\\Docker\\DockerCli.exe -SwitchLinuxEngine
+        "C:\ProgramFiles\\Docker\Docker\DockerCli.exe" -SwitchDaemon
 
         powershell restart-service *docker*
 
