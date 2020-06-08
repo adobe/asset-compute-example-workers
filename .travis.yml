@@ -42,7 +42,17 @@ script:
     (
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
 
-        docker run --rm busybox echo hello_world
+        ls $Env:ProgramData\chocolatey\bin\
+        choco install docker-desktop --pre 
+        choco install docker-cli
+        
+        $Env:ProgramData\chocolatey\bin\refreshenv.cmd
+
+        $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
+
+        $Env:ProgramData\chocolatey\bin\refreshenv.cmd
+
+        docker pull busybox:latest
       fi
       exit 0
     )
