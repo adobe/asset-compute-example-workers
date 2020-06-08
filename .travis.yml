@@ -18,9 +18,9 @@ node_js:
   - "12"
   - "14"
 
-arch:
-  - amd64
-  - arm64
+# arch:
+#   - amd64
+#   - arm64
 
 env:
   - TEST_DIR=projects/worker-animal-pictures
@@ -43,8 +43,9 @@ script:
         choco install docker-desktop --pre 
         choco install docker-cli
 
-        $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
-        cd $TEST_DIR && npm install && npm test
+        docker images
+        docker run --rm busybox echo hello_world
+        docker run --rm --platform linux busybox echo hello_world
       fi
       exit 0
     )
