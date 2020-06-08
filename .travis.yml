@@ -47,7 +47,7 @@ script:
         C:\\ProgramFiles\\Docker\\Docker\\DockerCli.exe -SwitchDaemon
         C:\\ProgramFiles\\Docker\\Docker\\DockerCli.exe -SwitchLinuxEngine
 
-        C:\\ProgramData\\chocolatey\\lib\docker-cli\\tools\\docker.exe pull busybox:latest
+        C:\\ProgramData\\chocolatey\\lib\\docker-cli\\tools\\docker.exe pull busybox:latest
       fi
       exit 0
     )
