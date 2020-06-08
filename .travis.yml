@@ -34,8 +34,6 @@ install:
   - aio plugins:install @adobe/aio-cli-plugin-asset-compute
   - aio info
 
-before_script:
-  
 script:
   - |
     (
@@ -43,8 +41,6 @@ script:
         choco install docker-desktop --pre 
         choco install docker-cli
 
-        docker images
-        docker run --rm busybox echo hello_world
         docker run --rm --platform linux busybox echo hello_world
       fi
       exit 0
