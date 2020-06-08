@@ -36,10 +36,10 @@ script:
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
         choco install docker-desktop --pre 
         choco install docker-cli
-        refreshenv
+        powershell refreshenv
 
-        $Host.Version
-        $PSVersionTable.PSVersion
+        powershell $Host.Version
+        powershell $PSVersionTable.PSVersion
         
         $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchDaemon
         cd $TEST_DIR && npm install && npm test
