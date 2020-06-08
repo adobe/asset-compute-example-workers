@@ -44,8 +44,10 @@ script:
         choco install docker-desktop --pre 
         choco install docker-cli
 
-        C:\\ProgramFiles\\Docker\\Docker\\DockerCli.exe -SwitchDaemon
-        C:\\ProgramFiles\\Docker\\Docker\\DockerCli.exe -SwitchLinuxEngine
+        docker-cli --version
+
+        C:\\Program\" "Files\\Docker\\Docker\\DockerCli.exe -SwitchDaemon
+        C:\\Program\" "Files\\Docker\\Docker\\DockerCli.exe -SwitchLinuxEngine
 
         powershell restart-service *docker*
 
