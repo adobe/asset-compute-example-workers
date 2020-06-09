@@ -46,6 +46,7 @@ script:
         cd C:\\Program Files\\Docker
         ls -a 
 
+        docker --version
         docker pull busybox:latest
       fi
     )
