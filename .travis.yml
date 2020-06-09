@@ -45,7 +45,7 @@ script:
         choco install docker-desktop
         choco install docker-cli
 
-        ls -r /
+        find -name DockerCli.exe
 
         C:\\ProgramData\\chocolatey\\lib\\docker-cli\\tools\\docker.exe pull busybox:latest
       fi
