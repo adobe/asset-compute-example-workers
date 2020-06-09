@@ -46,8 +46,8 @@ script:
         choco install docker-desktop
         choco install docker-cli
 
-        powershell Get-Childitem –Path C:\ -Include *DockerCli.exe* -File -Recurse -ErrorAction SilentlyContinue
-
+        ls -R / 
+        
         C:\\ProgramData\\chocolatey\\lib\\docker-cli\\tools\\docker.exe pull busybox:latest
       fi
     )
