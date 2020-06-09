@@ -45,7 +45,7 @@ script:
         choco install docker-desktop --pre 
         choco install docker-cli
 
-        cd C:\\ProgramData\\chocolatey\\lib\\
+        cd C:\\ProgramData\\chocolatey\\lib\\docker-cli
         ls -a
 
         powershell restart-service *docker*
