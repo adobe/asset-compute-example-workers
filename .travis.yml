@@ -48,6 +48,6 @@ script:
         ls -R /
         ls -R /c
 
-        C:\\ProgramData\\chocolatey\\lib\\docker-cli\\tools\\docker.exe pull busybox:latest
+        docker pull busybox:latest
       fi
     )
