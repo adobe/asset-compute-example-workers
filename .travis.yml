@@ -43,10 +43,8 @@ script:
     (
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
 
-        cd C:\\Program Files\\Docker
-        ls -a 
-
         docker --version
+        docker -h
         docker pull busybox:latest
       fi
     )
