@@ -42,12 +42,12 @@ script:
   - |
     (
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
-      
+
         choco install docker-desktop
         choco install docker-cli
 
         cd /
-        find -name DockerCli.exe
+        find . -name DockerCli.exe
 
         C:\\ProgramData\\chocolatey\\lib\\docker-cli\\tools\\docker.exe pull busybox:latest
       fi
