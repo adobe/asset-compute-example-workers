@@ -43,6 +43,9 @@ script:
     (
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
 
+        $Env:ProgramFiles\Docker\Docker\DockerCli.exe -SwitchLinuxEngine
+        powershell Restart-Service Docker
+
         docker --version
         docker -h
         docker pull busybox:latest
