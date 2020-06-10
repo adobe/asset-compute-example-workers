@@ -42,6 +42,8 @@ script:
   - |
     (
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
+        uname -a
+
         docker --version
         docker pull busybox:latest
       fi
