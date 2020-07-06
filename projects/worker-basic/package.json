@@ -3,7 +3,7 @@
     "author": "Adobe Inc.",
     "version": "1.0.0",
     "license": "Apache-2.0",
-    "description": "Asset Compute example custom worker",
+    "description": "Asset Compute example custom worker_cicd",
     "repository": "adobe/example-custom-worker",
     "dependencies": {
         "@adobe/asset-compute-sdk": "^1.0.2"
