@@ -12,8 +12,7 @@
 
 'use strict';
 
-const { worker } = require('@adobe/asset-compute-sdk');
-const { RenditionFormatUnsupportedError } = require('@adobe/asset-compute-sdk/errors');
+const { worker, RenditionFormatUnsupportedError } = require('@adobe/asset-compute-sdk');
 const { downloadFile } = require('@adobe/httptransfer');
 const urls = require('./lib/urls');
 

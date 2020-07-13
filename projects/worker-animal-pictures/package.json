@@ -6,7 +6,7 @@
     "description": "Asset Compute example custom worker - Animal Pictures",
     "repository": "adobe/example-worker-animal-pictures",
     "dependencies": {
-        "@adobe/asset-compute-sdk": "^1.0.2",
+        "@adobe/asset-compute-sdk": "^2.0.0",
         "@adobe/httptransfer": "^1.0.1"
     },
     "scripts": {
