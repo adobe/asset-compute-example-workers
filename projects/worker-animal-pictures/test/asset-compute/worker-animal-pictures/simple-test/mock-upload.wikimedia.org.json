@@ -1,7 +1,7 @@
 [{
     "httpRequest": {
-		"path": "/wikipedia/commons/c/ca/Entlebucher.jpg",
-		"method": "GET"
+        "path": "/wikipedia/commons/c/ca/Entlebucher.jpg",
+        "method": "GET"
     },
     "httpResponse": {
         "statusCode": 200,
