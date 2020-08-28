@@ -11,7 +11,11 @@ Simple example of a 3rd party Asset Compute worker. It generates a rendition by 
 
 ## [worker-animal-pictures](projects/worker-animal-pictures)
 
-Example of a 3rd party Asset Compute worker thatproduces renditions from an HTTP request to an external API based on an incoming parameter.
+Example of a 3rd party Asset Compute worker that produces renditions from an HTTP request to an external API based on an incoming parameter.
+
+## [worker-metadata](projects/worker-metadata)
+
+Example of a 3rd party Asset Compute Metadata worker. It provides examples of generating various types of metadata.
 
 ## Contributing
 
