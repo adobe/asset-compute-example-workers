@@ -12,11 +12,5 @@
     "scripts": {
         "test": "aio asset-compute test-worker"
     },
-    "keywords": [
-        "asset compute",
-        "adobe",
-        "serverless",
-        "example",
-        "worker"
-    ]
+    "private": true
 }
