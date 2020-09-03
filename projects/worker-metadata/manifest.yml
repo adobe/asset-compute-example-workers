@@ -3,7 +3,7 @@ packages:
     actions:
       worker-metadata:
         function: 'worker-metadata.js'
-        runtime: 'nodejs:10'
+        runtime: 'nodejs:12'
         web: true
         annotations:
           require-adobe-auth: true
