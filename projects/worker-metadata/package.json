@@ -1,0 +1,16 @@
+{
+    "name": "example-worker-metadata",
+    "author": "Adobe Inc.",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "description": "Asset Compute example custom metadata worker",
+    "repository": "adobe/example-worker-metadata",
+    "dependencies": {
+        "@adobe/asset-compute-sdk": "^2.2.1",
+        "@adobe/asset-compute-xmp": "^1.0.0"
+    },
+    "scripts": {
+        "test": "aio asset-compute test-worker"
+    },
+    "private": true
+}
