@@ -162,14 +162,7 @@ exports.main = worker(async (source, rendition, params) => {
     const xmp = serializeXmp({
         "ccai:colorNames": colors.map(color => color.name),
         "ccai:colorPercentages": colors.map(color => toPercentageString(color)),
-        "ccai:colorRGB": colors.map(color => toWebColor(color)),
-        "ccai:colors": colors.map(color => ({
-            "ccai:name": color.name,
-            "ccai:percentage": color.percentage,
-            "ccai:red": color.red,
-            "ccai:green": color.green,
-            "ccai:blue": color.blue
-        }))
+        "ccai:colorRGB": colors.map(color => toWebColor(color))
     }, {
         namespaces: {
             ccai: "https://example.com/schema/ccai"
