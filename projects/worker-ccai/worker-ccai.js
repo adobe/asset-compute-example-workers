@@ -71,6 +71,27 @@ function sortColors(colors) {
     colors.sort((a, b) => b.percentage - a.percentage);
 }
 
+/**
+ * Convert a percentage to a string
+ * 
+ * @param {Color} color Color feature
+ * @returns Percentage as a string, e.g. 59%
+ */
+function toPercentageString(color) {
+    return `${Math.round(color.percentage * 100.0)}%`;
+}
+
+/**
+ * Convert a color feature to a web color
+ * 
+ * @param {Color} color Color feature
+ * @returns Web color, e.g. `#a909fe`
+ */
+function toWebColor(color) {
+    const arr = [color.red, color.green, color.blue];
+    return `#${Buffer.from(arr).toString('hex')}`;
+}
+
 exports.main = worker(async (source, rendition, params) => {
     // Acquire end point and analyzer
     const analyzer_id = rendition.instructions.ANALYZER_ID || DEFAULT_ANALYZER_ID;
@@ -140,6 +161,8 @@ exports.main = worker(async (source, rendition, params) => {
     sortColors(colors);
     const xmp = serializeXmp({
         "ccai:colorNames": colors.map(color => color.name),
+        "ccai:colorPercentages": colors.map(color => toPercentageString(color)),
+        "ccai:colorRGB": colors.map(color => toWebColor(color)),
         "ccai:colors": colors.map(color => ({
             "ccai:name": color.name,
             "ccai:percentage": color.percentage,
