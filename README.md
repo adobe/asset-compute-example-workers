@@ -17,6 +17,10 @@ Example of a 3rd party Asset Compute worker that produces renditions from an HTT
 
 Example of a 3rd party Asset Compute Metadata worker. It provides examples of generating various types of metadata.
 
+## [worker-ccai](projects/worker-ccai)
+
+Example of a custom Asset Compute Metadata worker leveraging the [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) Color extraction API.
+
 ## Contributing
 
 Contributions are welcomed! Read the [Contributing Guide](./.github/CONTRIBUTING.md) for more information.
