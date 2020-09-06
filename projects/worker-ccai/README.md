@@ -2,6 +2,10 @@
 
 Example of a custom Asset Compute Metadata worker leveraging the [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) Color extraction API.
 
+The worker is based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
+
+## Worker Behavior
+
 It returns the following types of metadata:
 
 | Name | Metadata Type | Description |
@@ -18,23 +22,14 @@ The means, for example, that at index 0:
 - `ccai:colorPercentages` has the coverage percentage of the most prevalent color
 - `ccai:colorRGB` has the RGB value represented as a [web color](https://en.wikipedia.org/wiki/Web_colors) of the most prevalent color
 
-The worker is based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
-
-## Install
+## Setup
 
 Requirements:
 
-* [aio cli](https://github.com/adobe/aio-cli)
+- [Node.js](https://nodejs.org/en/)
+- [aio cli](https://github.com/adobe/aio-cli)
 
-## Test
-
-This runs the worker test cases located in [tests](tests) using [aio](https://github.com/adobe/aio-cli):
-
-```bash
-npm test
-```
-
-## Create Firefly Project
+### Create Firefly Project
 
 Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/content/help/en/asset-compute/using/extend/understand-extensibility.html) for more detailed information.
 
@@ -44,7 +39,7 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 - Select the Workspace
 - Click on _Download All_ in the top right corner. This will download the _Adobe I/O Developer Console configuration file_
 
-## Deploy
+### Deploy
 
 - Download the sources of this repository
 - Go to the `worker-ccai` directory
@@ -52,6 +47,10 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 - Run `aio app use <Path to Adobe I/O Developer Console configuration file>`
   - This will setup your `.env` to point at the Firefly project and workspace
 - Run `aio app deploy` to deploy the application
+
+### Review logs
+
+- Use `aio app logs` to review the logs of the most recent invocation
 
 ## Integrating with AEM Cloud Service
 
@@ -90,6 +89,6 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 
 - Upload a PNG or JPG to the folder that has the _Processing Profile_ associated with it
 - Wait for the asset to stop processing
-- Select the asset
+- Click on the asset
 - Click on _Properties_
 - Switch to the _Content and Commerce AI_ tab

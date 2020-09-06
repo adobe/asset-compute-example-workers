@@ -156,7 +156,7 @@ exports.main = worker(async (source, rendition, params) => {
         }
     );
 
-    // Convert color features to XMP metadata
+    // Parse, sort, serialize to XMP
     const colors = parseColors(response.data);
     sortColors(colors);
     const xmp = serializeXmp({
