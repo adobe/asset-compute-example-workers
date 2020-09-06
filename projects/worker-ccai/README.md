@@ -4,9 +4,9 @@ Example of a custom Asset Compute Metadata worker leveraging the [Content and Co
 
 The worker is based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
-## Worker Behavior
+## Metadata
 
-It returns the following types of metadata:
+The worker returns the following metadata:
 
 | Name | Metadata Type | Description |
 | ---- | ------------- | ----------- |
