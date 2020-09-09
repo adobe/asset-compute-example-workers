@@ -1,0 +1,9 @@
+packages:
+  __APP_PACKAGE__:
+    actions:
+      worker-ccai:
+        function: 'worker-ccai.js'
+        runtime: 'nodejs:12'
+        web: true
+        annotations:
+          require-adobe-auth: true
