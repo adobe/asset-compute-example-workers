@@ -1,8 +1,8 @@
 packages:
   __APP_PACKAGE__:
     actions:
-      worker-ccai:
-        function: 'worker-ccai.js'
+      worker-ccai-colorextract:
+        function: 'worker-ccai-colorextract.js'
         runtime: 'nodejs:12'
         web: true
         annotations:
