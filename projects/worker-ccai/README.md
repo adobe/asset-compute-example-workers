@@ -10,22 +10,22 @@ The worker returns the following metadata:
 
 | Name | Metadata Type | Description |
 | ---- | ------------- | ----------- |
-| `ccai:colorNames` | Multi Value Text | List of color names  |
-| `ccai:colorPercentages` | Multi Value Text | List of coverage percentages |
-| `ccai:colorRGB` | Multi Value Text | List of [web colors](https://en.wikipedia.org/wiki/Web_colors) |
+| `ccai:colorNames` | Multi Value Text | List of color names with percentages  |
+| `ccai:colorRGB` | Multi Value Text | List of [web colors](https://en.wikipedia.org/wiki/Web_colors) with percentages |
+| `ccai:colors` | Sequence of XMP structs | List of color features, with fields `ccai:name`, `ccai:percentage`, `ccai:red`, `ccai:green`, and `ccai:blue`. Intended for advanced AEM customizations. |
 
-The lists have the same order, so the same index in each list represents a single color feature. The lists are sorted from high to low coverage percentage, so the most prevalent color is listed first.
+The lists have the same order and are sorted from high to low coverage percentage, with the most prevalent color is listed first.
 
-The means, for example, that at index 0:
+This means at index 0:
 
-- `ccai:colorNames` has the name of the most prevalent color
-- `ccai:colorPercentages` has the coverage percentage of the most prevalent color
-- `ccai:colorRGB` has the RGB value represented as a [web color](https://en.wikipedia.org/wiki/Web_colors) of the most prevalent color
+- `ccai:colorNames` has the name of the most prevalent color with its coverage percentage, e.g. `Orange, 15%`
+- `ccai:colorRGB` has the most prevalent RGB value represented as a [web color](https://en.wikipedia.org/wiki/Web_colors) with its coverage percentage, e.g. `#c7b491, 15%`
 
 ## Setup
 
 Requirements:
 
+- Access to [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) in the [Adobe Developer Console](https://console.adobe.io).
 - [Node.js](https://nodejs.org/en/)
 - [aio cli](https://github.com/adobe/aio-cli)
 
@@ -77,9 +77,6 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 - Click on _Build Form_, Drag _Multi Value Text_ to the first column of the form
   - Name: `Color Names`
   - Map to property: `./jcr:content/metadata/ccai:colorNames`
-- Click on _Build Form_, Drag _Multi Value Text_ to the second column of the form
-  - Name: `Color Percentages`
-  - Map to property: `./jcr:content/metadata/ccai:colorPercentages`
 - Click on _Build Form_, Drag _Multi Value Text_ to the third column of the form
   - Name: `Color RGB`
   - Map to property: `./jcr:content/metadata/ccai:colorRGB`
