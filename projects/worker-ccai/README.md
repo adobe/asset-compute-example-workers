@@ -14,7 +14,7 @@ The worker returns the following metadata:
 | `ccai:colorRGB` | Multi Value Text | List of [web colors](https://en.wikipedia.org/wiki/Web_colors) with percentages |
 | `ccai:colors` | Sequence of XMP structs | List of color features, with fields `ccai:name`, `ccai:percentage`, `ccai:red`, `ccai:green`, and `ccai:blue`. Intended for advanced AEM customizations. |
 
-The lists have the same order and are sorted from high to low coverage percentage, with the most prevalent color is listed first.
+The lists have the same order and are sorted from high to low coverage percentage.
 
 This means at index 0:
 
