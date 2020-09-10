@@ -1,0 +1,60 @@
+[{
+    "httpRequest": {
+        "method": "POST",
+        "path": "/services/v1/predict",
+        "headers": {
+            "Authorization": [ "Bearer test-access-token" ],
+            "x-api-key": [ "test-client-id" ]
+        },
+        "body": {
+            "type": "STRING",
+            "string": "{\"enable_diagnostics\":true,\"requests\":[{\"analyzer_id\":\"Feature:image-color-histogram:Service-e952f4acd7c2425199b476a2eb459635\",\"parameters\":{\"application-id\":\"1234\",\"content-type\":\"inline\",\"encoding\":\".jpg\",\"threshold\":\"0\",\"top-N\":\"0\",\"custom\":{},\"data\":[{\"content-id\":\"0987\",\"content\":\"inline-image\",\"content-type\":\"inline\",\"encoding\":\".jpg\",\"threshold\":\"0\",\"top-N\":\"0\",\"historic-metadata\":[],\"custom\":{\"exclude_mask\":1}}]}}]}",
+            "subString": true
+        }
+    },
+    "httpResponse": {
+        "statusCode": 200,
+        "body": {
+            "type": "JSON",
+            "matchType": "strict",
+            "json": {
+                "status": 200,
+                "content_id": "test_image.jpg",
+                "cas_responses": [
+                  {
+                    "status": 200,
+                    "analyzer_id": "Feature:image-color-histogram:Service-e952f4acd7c2425199b476a2eb459635",
+                    "content_id": "test_image.jpg",
+                    "result": {
+                      "response_type": "feature",
+                      "response": [
+                        {
+                          "feature_value": [
+                            {
+                              "feature_name": "color_name_and_rgb",
+                              "feature_value": "White,0.59,251,251,243"
+                            },
+                            {
+                              "feature_value": "Orange,0.30,248,169,48",
+                              "feature_name": "color_name_and_rgb"
+                            },
+                            {
+                              "feature_name": "color_name_and_rgb",
+                              "feature_value": "Mustard,0.08,251,199,77"
+                            },
+                            {
+                              "feature_name": "color_name_and_rgb",
+                              "feature_value": "Gold,0.02,250,191,55"
+                            }
+                          ],
+                          "feature_name": "color"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "error": []
+              }
+        }
+    }
+}]
