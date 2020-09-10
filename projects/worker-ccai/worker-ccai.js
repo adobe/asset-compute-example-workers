@@ -142,16 +142,24 @@ exports.main = worker(async (source, rendition, params) => {
         }]
     }));
 
+    // Authorization
+    let accessToken = params.auth && params.auth.accessToken;
+    let clientId = params.auth && params.auth.clientId;
+    if (process.env.WORKER_TEST_MODE) {
+        accessToken = "test-access-token";
+        clientId = "test-client-id";
+    }
+
     // Execute request
     const response = await axios.post(
         endpoint,
         formData,
         {
             headers: Object.assign({
-                'Authorization': 'Bearer ' + params.auth.accessToken,
+                'Authorization': 'Bearer ' + accessToken,
                 'cache-control': 'no-cache,no-cache',
                 'Content-Type': 'multipart/form-data',
-                'x-api-key': params.auth.clientId,
+                'x-api-key': clientId,
             }, formData.getHeaders())
         }
     );
