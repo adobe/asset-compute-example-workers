@@ -1,10 +1,10 @@
 {
-  "name": "example-worker-ccai",
+  "name": "worker-ccai-colorextract",
   "author": "Adobe Inc.",
   "version": "1.0.0",
   "license": "Apache-2.0",
   "description": "Asset Compute custom worker leveraging the Content and Commerce Color Extraction API",
-  "repository": "adobe/example-worker-metadata",
+  "repository": "adobe/asset-compute-example-workers",
   "dependencies": {
     "@adobe/asset-compute-sdk": "^2.2.1",
     "@adobe/asset-compute-xmp": "^1.0.0",
