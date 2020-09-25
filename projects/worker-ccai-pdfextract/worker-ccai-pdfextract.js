@@ -75,6 +75,16 @@ function parseEntities(response) {
     return entities;
 }
 
+/**
+ * Sort entity scores, high to low confidence
+ * 
+ * @param {Entity[]} entities entity features
+ * @return {Entity[]} Color features sorted by percentage (high to low)
+ */
+function sortScores(entities) {
+    entities.sort((a, b) => b.score - a.score);
+}
+
 exports.main = worker(async (source, rendition, params) => {
     // Acquire end point and analyzer
     const analyzer_id = rendition.instructions.ANALYZER_ID || DEFAULT_ANALYZER_ID;
@@ -136,11 +146,11 @@ exports.main = worker(async (source, rendition, params) => {
         }
     );
     const entities = parseEntities(response.data);
-    console.log('###### ENTITIES', entities);
 
     // Parse, sort, serialize to XMP
+    sortScores(entities);
     const xmp = serializeXmp({
-        "ccai:entityName": entities.map(entity => `${entity.type}, ${entity.name}, ${entity.score}`),
+        "ccai:entityName": entities.map(entity => `${entity.type}: ${entity.name}`),
         "ccai:entity": entities.map(entity => ({
             "ccai:name": entity.name,
             "ccai:type": entity.type,
