@@ -20,78 +20,59 @@ const { createReadStream } = require('fs');
 const fs = require('fs').promises;
 const FormData = require('form-data');
 
-const DEFAULT_ANALYZER_ID = "Feature:image-color-histogram:Service-e952f4acd7c2425199b476a2eb459635";
+const DEFAULT_ANALYZER_ID = "Feature:cintel-ner:Service-7a87cb57461345c280b62470920bcdc5";
 const DEFAULT_CCAI_ENDPOINT = "https://sensei.adobe.io/services/v1/predict";
+const CONTENT_ID = 'abc123';
 
 /**
- * @typedef {Object} Color
- * @property {String} name Color name
- * @property {Number} percentage Coverage percentage (0.0-1.0)
- * @property {Number} red Red channel (0-255)
- * @property {Number} green Green channel (0-255)
- * @property {Number} blue Blue channel (0-255) 
- */
-
-/**
- * Parse the color feature response
+ * Parse raw response from CCAI api and return just the relevant `response` section
  * 
  * @param {*} response JSON response from Content and Commerce AI service
- * @returns {Color[]} Color features returned by the service
+ * @returns {Array} Array of feature values and names from the service
  */
-function parseColors(response) {
-    const colors = [];
+function parseResponse(response) {
     for (const cas of response.cas_responses) {
         if (cas.status === 200 && cas.result.response_type === "feature") {
-            for (const r of cas.result.response) {
-                if (r.feature_name === "color") {
-                    for (const value of r.feature_value) {
-                        if (typeof value.feature_value === 'string') {
-                            const [ name, percentage, red, green, blue ] = value.feature_value.split(",");
-                            colors.push({
-                                name,
-                                percentage,
-                                red,
-                                green,
-                                blue
-                            });    
-                        }
+            return cas.result.response;
+        }
+    }
+}
+
+
+/**
+ * @typedef {Object} Entity
+ * @property {String} name entity name
+ * @property {String} type entity type from list of recognized entities
+ * @property {Number} score confidence score (0.0-1.0)
+ */
+/**
+ * Parse keywords in feature response
+ * 
+ * @param {*} response JSON response from Content and Commerce AI service
+ * @returns {Entity[]} Color features returned by the service
+ */
+function parseEntities(response) {
+    const entities = [];
+    const resp = parseResponse(response);
+    for (const features of resp) {
+        if (features.feature_name === CONTENT_ID) {
+            for (const feature of features.feature_value) {
+                if (feature.feature_name === "labels") {
+                    const labels = feature.feature_value // array of feature values and names of labels
+                    for (const label of labels) {
+                        const valuesObj = {};
+                        label.feature_value.forEach(f => {
+                            valuesObj[f.feature_name] = f.feature_value;
+                        });
+                        entities.push(Object.assign({
+                            name: label.feature_name,
+                        }, valuesObj));
                     }
                 }
             }
         }
     }
-    return colors;
-}
-
-/**
- * Sort colors, high coverage to low coverage
- * 
- * @param {Color[]} colors Color features
- * @return {Color[]} Color features sorted by percentage (high to low)
- */
-function sortColors(colors) {
-    colors.sort((a, b) => b.percentage - a.percentage);
-}
-
-/**
- * Convert a percentage to a string
- * 
- * @param {Color} color Color feature
- * @returns Percentage as a string, e.g. 59%
- */
-function toPercentageString(color) {
-    return `${Math.round(color.percentage * 100.0)}%`;
-}
-
-/**
- * Convert a color feature to a web color
- * 
- * @param {Color} color Color feature
- * @returns Web color, e.g. `#a909fe`
- */
-function toWebColor(color) {
-    const arr = [color.red, color.green, color.blue];
-    return `#${Buffer.from(arr).toString('hex')}`;
+    return entities;
 }
 
 exports.main = worker(async (source, rendition, params) => {
@@ -110,28 +91,16 @@ exports.main = worker(async (source, rendition, params) => {
     // Build parameters to send to Sensei service
     const ext = path.extname(source.path);
     const parameters = {
-        "application-id": "1234",
-        "content-type": "inline",
-        "encoding": ext,
-        "threshold": "0",
-        "top-N": "0",
-        "custom": {},
-        "data": [{
-            "content-id": "0987",
-            "content": "inline-image",
-            "content-type": "inline",
-            "encoding": ext,
-            "threshold": "0",
-            "top-N": "0",
-            "historic-metadata": [],
-            "custom": {"exclude_mask": 1}
-        }]
+        "application-id": "1234",                             
+        "content-type": "file",                                         
+        "encoding": "pdf",                                   
+        "data": [                                
+          {                                   
+            "content-id": CONTENT_ID,                 
+            "content": "file"         
+          }                  
+        ]
     };
-    if (rendition.instructions.SENSEI_PARAMS) {
-        parameters = JSON.parse(rendition.instructions.SENSEI_PARAMS);
-        parameters.encoding = ext;
-        parameters.data[0].encoding = ext;
-    }
 
     // Build form to post
     const formData = new FormData();
@@ -140,7 +109,8 @@ exports.main = worker(async (source, rendition, params) => {
         enable_diagnostics: true,
         requests: [{
             analyzer_id,
-            parameters
+            parameters,
+            "content_id": "test123",
         }]
     }));
 
@@ -165,19 +135,16 @@ exports.main = worker(async (source, rendition, params) => {
             }, formData.getHeaders())
         }
     );
+    const entities = parseEntities(response.data);
+    console.log('###### ENTITIES', entities);
 
     // Parse, sort, serialize to XMP
-    const colors = parseColors(response.data);
-    sortColors(colors);
     const xmp = serializeXmp({
-        "ccai:colorNames": colors.map(color => `${color.name}, ${toPercentageString(color)}`),
-        "ccai:colorRGB": colors.map(color => `${toWebColor(color)}, ${toPercentageString(color)}`),
-        "ccai:colors": colors.map(color => ({
-            "ccai:name": color.name,
-            "ccai:percentage": color.percentage,
-            "ccai:red": color.red,
-            "ccai:green": color.green,
-            "ccai:blue": color.blue
+        "ccai:entityName": entities.map(entity => `${entity.type}, ${entity.name}, ${entity.score}`),
+        "ccai:entity": entities.map(entity => ({
+            "ccai:name": entity.name,
+            "ccai:type": entity.type,
+            "ccai:score": entity.score
         }))
     }, {
         namespaces: {

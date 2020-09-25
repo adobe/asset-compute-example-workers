@@ -1,0 +1,79 @@
+[{
+    "httpRequest": {
+        "method": "POST",
+        "path": "/services/v1/predict",
+        "headers": {
+            "Authorization": [ "Bearer test-access-token" ],
+            "x-api-key": [ "test-client-id" ]
+        },
+        "body": {
+            "type": "STRING",
+            "string": "{\"enable_diagnostics\":true,\"requests\":[{\"analyzer_id\":\"Feature:image-color-histogram:Service-e952f4acd7c2425199b476a2eb459635\",\"parameters\":{\"application-id\":\"1234\",\"content-type\":\"inline\",\"encoding\":\".jpg\",\"threshold\":\"0\",\"top-N\":\"0\",\"custom\":{},\"data\":[{\"content-id\":\"0987\",\"content\":\"inline-image\",\"content-type\":\"inline\",\"encoding\":\".jpg\",\"threshold\":\"0\",\"top-N\":\"0\",\"historic-metadata\":[],\"custom\":{\"exclude_mask\":1}}]}}]}",
+            "subString": true
+        }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+          "type": "JSON",
+          "matchType": "strict",
+          "json": {
+            "status": 200,
+            "content_id": "161hw2.pdf",
+            "cas_responses": [
+              {
+                "status": 200,
+                "analyzer_id": "Feature:cintel-ner:Service-7a87cb57461345c280b62470920bcdc5",
+                "content_id": "161hw2.pdf",
+                "result": {
+                  "response_type": "feature",
+                  "response": [
+                    {
+                      "feature_value": [
+                        {
+                          "feature_name": "status",
+                          "feature_value": "success"
+                        },
+                        {
+                          "feature_value": [
+                            {
+                              "feature_name": "delbick",
+                              "feature_value": [
+                                {
+                                  "feature_name": "score",
+                                  "feature_value": 0.03673855028832046
+                                },
+                                {
+                                  "feature_name": "type",
+                                  "feature_value": "KEYWORD"
+                                }
+                              ]
+                            },
+                            {
+                              "feature_name": "Ci",
+                              "feature_value": [
+                                {
+                                  "feature_name": "score",
+                                  "feature_value": 0
+                                },
+                                {
+                                  "feature_name": "type",
+                                  "feature_value": "PERSON"
+                                }
+                              ]
+                            }
+                          ],
+                          "feature_name": "labels"
+                        }
+                      ],
+                      "feature_name": "abc123"
+                    }
+                  ]
+                }
+              }
+            ],
+            "error": []
+          }
+        }
+      }
+}]
