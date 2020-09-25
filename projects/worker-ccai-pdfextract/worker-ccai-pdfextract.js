@@ -23,6 +23,7 @@ const FormData = require('form-data');
 const DEFAULT_ANALYZER_ID = "Feature:cintel-ner:Service-7a87cb57461345c280b62470920bcdc5";
 const DEFAULT_CCAI_ENDPOINT = "https://sensei.adobe.io/services/v1/predict";
 const CONTENT_ID = 'abc123';
+const DEFAULT_MAX_RESULTS = 10;
 
 /**
  * Parse raw response from CCAI api and return just the relevant `response` section
@@ -103,7 +104,9 @@ exports.main = worker(async (source, rendition, params) => {
     const parameters = {
         "application-id": "1234",                             
         "content-type": "file",                                         
-        "encoding": "pdf",                                   
+        "encoding": "pdf",
+        "threshold": 0.01,
+        "top-N": DEFAULT_MAX_RESULTS,                                   
         "data": [                                
           {                                   
             "content-id": CONTENT_ID,                 
@@ -150,6 +153,10 @@ exports.main = worker(async (source, rendition, params) => {
     // Parse, sort, serialize to XMP
     sortScores(entities);
     const xmp = serializeXmp({
+        "ccai:entityKeyword": entities.filter(entity => ( entity.type === 'KEYWORD')).map(entity => entity.name),
+        "ccai:entityOrg": entities.filter(entity => ( entity.type === 'ORG')).map(entity => entity.name),
+        "ccai:entityPerson": entities.filter(entity => ( entity.type === 'PERSON')).map(entity => entity.name),
+        "ccai:entityProduct": entities.filter(entity => ( entity.type === 'PRODUCT')).map(entity => entity.name),
         "ccai:entityName": entities.map(entity => `${entity.type}: ${entity.name}`),
         "ccai:entity": entities.map(entity => ({
             "ccai:name": entity.name,
