@@ -154,9 +154,10 @@ exports.main = worker(async (source, rendition, params) => {
     sortScores(entities);
     const xmp = serializeXmp({
         "ccai:entityKeyword": entities.filter(entity => ( entity.type === 'KEYWORD')).map(entity => entity.name),
-        "ccai:entityOrg": entities.filter(entity => ( entity.type === 'ORG')).map(entity => entity.name),
+        "ccai:entityOrganization": entities.filter(entity => ( entity.type === 'ORG')).map(entity => entity.name),
         "ccai:entityPerson": entities.filter(entity => ( entity.type === 'PERSON')).map(entity => entity.name),
         "ccai:entityProduct": entities.filter(entity => ( entity.type === 'PRODUCT')).map(entity => entity.name),
+        "ccai:entityLocation": entities.filter(entity => ( entity.type === 'LOC' || entity.type === 'GPE')).map(entity => entity.name),
         "ccai:entityName": entities.map(entity => `${entity.type}: ${entity.name}`),
         "ccai:entity": entities.map(entity => ({
             "ccai:name": entity.name,

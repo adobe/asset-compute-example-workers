@@ -6,11 +6,16 @@ The worker is based on [Project Firefly](https://github.com/AdobeDocs/project-fi
 
 ## Metadata
 
-The worker returns the following metadata:
+The worker returns the following metadata from the recognized list of named entities from the [keyword extraction API](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/api/keyword-extraction.html)
 
 | Name | Metadata Type | Description |
 | ---- | ------------- | ----------- |
-| `ccai:entityNames` | Multi Value Text | List of entity names in order of highest score to lowest score  |
+| `ccai:entityKeyword` | Multi Value Text | List of keywords |
+| `ccai:entityOrganization` | Multi Value Text | List of 	companies, agencies, institutions  |
+| `ccai:entityProduct` | Multi Value Text | List of objects, vehicles, foods, etc. (Not services) |
+| `ccai:entityPerson` | Multi Value Text | List of people, including fictional. |
+| `ccai:entityLocation` | Multi Value Text | List of countries, cities, states, mountain ranges, and bodies of water. |
+| `ccai:entityName` | Multi Value Text | List of entity names in order of highest score to lowest score  |
 | `ccai:entity` | Sequence of XMP structs | List of entity features, with fields `ccai:name`, `ccai:type`, and `ccai:score`. Intended for advanced AEM customizations. |
 
 The lists have the same order and are sorted from high to low score percentage.
