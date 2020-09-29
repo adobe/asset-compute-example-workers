@@ -3,7 +3,7 @@
   "author": "Adobe Inc.",
   "version": "1.0.0",
   "license": "Apache-2.0",
-  "description": "Asset Compute custom worker leveraging the Content and Commerce Color Extraction API",
+  "description": "Asset Compute custom worker leveraging the Content and Commerce Keywot\rd Extraction API",
   "repository": "adobe/asset-compute-example-workers",
   "dependencies": {
     "@adobe/asset-compute-sdk": "^2.2.1",
