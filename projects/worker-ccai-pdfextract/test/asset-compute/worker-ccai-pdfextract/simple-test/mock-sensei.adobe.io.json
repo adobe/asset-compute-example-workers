@@ -8,7 +8,7 @@
         },
         "body": {
             "type": "STRING",
-            "string": "{\"enable_diagnostics\":true,\"requests\":[{\"analyzer_id\":\"Feature:image-color-histogram:Service-e952f4acd7c2425199b476a2eb459635\",\"parameters\":{\"application-id\":\"1234\",\"content-type\":\"inline\",\"encoding\":\".jpg\",\"threshold\":\"0\",\"top-N\":\"0\",\"custom\":{},\"data\":[{\"content-id\":\"0987\",\"content\":\"inline-image\",\"content-type\":\"inline\",\"encoding\":\".jpg\",\"threshold\":\"0\",\"top-N\":\"0\",\"historic-metadata\":[],\"custom\":{\"exclude_mask\":1}}]}}]}",
+            "string": "{\"enable_diagnostics\":true,\"requests\":[{\"analyzer_id\":\"Feature:cintel-ner:Service-7a87cb57461345c280b62470920bcdc5\",\"parameters\":{\"application-id\":\"1234\",\"content-type\":\"inline\",\"encoding\":\".jpg\",\"threshold\":\"0\",\"top-N\":\"0\",\"custom\":{},\"data\":[{\"content-id\":\"0987\",\"content\":\"inline-image\",\"content-type\":\"inline\",\"encoding\":\".jpg\",\"threshold\":\"0\",\"top-N\":\"0\",\"historic-metadata\":[],\"custom\":{\"exclude_mask\":1}}]}}]}",
             "subString": true
         }
     },

@@ -14,8 +14,6 @@
 const { worker, SourceCorruptError } = require('@adobe/asset-compute-sdk');
 const { serializeXmp } = require("@adobe/asset-compute-xmp");
 const axios = require('axios');
-
-const path = require('path');
 const { createReadStream } = require('fs');
 const fs = require('fs').promises;
 const FormData = require('form-data');
@@ -100,7 +98,6 @@ exports.main = worker(async (source, rendition, params) => {
     }
 
     // Build parameters to send to Sensei service
-    const ext = path.extname(source.path);
     const parameters = {
         "application-id": "1234",                             
         "content-type": "file",                                         
