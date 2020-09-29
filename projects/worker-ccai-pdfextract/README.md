@@ -1,6 +1,6 @@
-# worker-ccai-colorextract
+# worker-ccai-pdfextract
 
-Example of a custom Asset Compute Metadata worker leveraging the [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) Color extraction API.
+Example of a custom Asset Compute Metadata worker leveraging the [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) Keyword extraction API.
 
 The worker is based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
@@ -41,7 +41,7 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 ### Deploy
 
 - Download the sources of this repository
-- Go to the `worker-ccai-colorextract` directory
+- Go to the `worker-ccai-pdfextract` directory
 - Run `npm install`
 - Run `aio app use <Path to Adobe I/O Developer Console configuration file>`
   - This will setup your `.env` to point at the Firefly project and workspace
