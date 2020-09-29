@@ -74,8 +74,12 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 - Select an existing schema like _default_ and click on _Edit_ or click _Create_
 - Click on `+` to add a new _Content and Commerce AI_ tab
 - Click on _Build Form_, Drag _Multi Value Text_ to the first column of the form
-  - Name: `Color Names`
-  - Map to property: `./jcr:content/metadata/ccai:entityNames`
+  - Name: `Keywords`
+  - Map to property: `./jcr:content/metadata/ccai:entityKeyword`
+- Click on _Build Form_, Drag _Multi Value Text_ to the first column of the form
+  - Name: `Organizations`
+  - Map to property: `./jcr:content/metadata/ccai:entityOrganization`
+... repeat these steps for the rest of the entities: `Product`, `Person`, and `Location`
 - Click on Save
 
 ### End to end test
