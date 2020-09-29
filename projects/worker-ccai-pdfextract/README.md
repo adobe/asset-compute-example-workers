@@ -25,7 +25,7 @@ The lists have the same order and are sorted from high to low score percentage.
 Requirements:
 
 - Access to [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) in the [Adobe Developer Console](https://console.adobe.io).
-- [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/) version 10 or 12
 - [aio cli](https://github.com/adobe/aio-cli)
 
 ### Create Firefly Project
@@ -44,8 +44,8 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 - Go to the `worker-ccai-pdfextract` directory
 - Run `npm install`
 - Run `aio app use <Path to Adobe I/O Developer Console configuration file>`
-  - This will setup your `.env` to point at the Firefly project and workspace
-- Run `aio app deploy` to deploy the application
+  - This will setup your `.env` file to point at the Firefly project and workspace
+- Run `aio app deploy` to deploy the application into your workspace
 
 ### Review logs
 
@@ -85,7 +85,7 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 ### End to end test
 
 - Upload a PNG or JPG to the folder that has the _Processing Profile_ associated with it
-- Wait for the asset to stop processing
+- Wait for the asset to finish processing
 - Click on the asset
 - Click on _Properties_
 - Switch to the _Content and Commerce AI_ tab

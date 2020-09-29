@@ -14,7 +14,8 @@
     "@adobe/aio-cli-plugin-asset-compute": "^1.4.1"
   },
   "scripts": {
-    "test": "adobe-asset-compute test-worker"
+    "test": "adobe-asset-compute test-worker",
+    "post-app-run": "adobe-asset-compute devtool"
   },
   "private": true
 }

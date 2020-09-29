@@ -22,6 +22,7 @@ const DEFAULT_ANALYZER_ID = "Feature:cintel-ner:Service-7a87cb57461345c280b62470
 const DEFAULT_CCAI_ENDPOINT = "https://sensei.adobe.io/services/v1/predict";
 const CONTENT_ID = 'abc123';
 const DEFAULT_MAX_RESULTS = 10;
+const METADATA_XMP_NAMESPACE = "https://example.com/schema/ccai";
 
 /**
  * Parse raw response from CCAI api and return just the relevant `response` section
@@ -34,6 +35,24 @@ function parseResponse(response) {
         if (cas.status === 200 && cas.result.response_type === "feature") {
             return cas.result.response;
         }
+    }
+}
+
+/**
+ * Parse labels in response from CCAI api and format into a nice object
+ * 
+ * @param {*} labels array of feature values and names of labels from Content and Commerce AI service
+ * @param {Entitiy[]} entities Array of entities objects
+ */
+function formatLabels(labels, entities) {
+    for (const label of labels) {
+        const valuesObj = {};
+        label.feature_value.forEach(f => {
+            valuesObj[f.feature_name] = f.feature_value;
+        });
+        entities.push(Object.assign({
+            name: label.feature_name,
+        }, valuesObj));
     }
 }
 
@@ -58,15 +77,7 @@ function parseEntities(response) {
             for (const feature of features.feature_value) {
                 if (feature.feature_name === "labels") {
                     const labels = feature.feature_value // array of feature values and names of labels
-                    for (const label of labels) {
-                        const valuesObj = {};
-                        label.feature_value.forEach(f => {
-                            valuesObj[f.feature_name] = f.feature_value;
-                        });
-                        entities.push(Object.assign({
-                            name: label.feature_name,
-                        }, valuesObj));
-                    }
+                    formatLabels(labels, entities);
                 }
             }
         }
@@ -119,14 +130,17 @@ exports.main = worker(async (source, rendition, params) => {
         enable_diagnostics: true,
         requests: [{
             analyzer_id,
-            parameters,
-            "content_id": "test123",
+            parameters
         }]
     }));
 
     // Authorization
     let accessToken = params.auth && params.auth.accessToken;
     let clientId = params.auth && params.auth.clientId;
+    
+    // WORKER_TEST_MODE is true when you are running worker unit
+    // tests using the `test-worker` command
+    // Dummy authorization parameters needed for mocks 
     if (process.env.WORKER_TEST_MODE) {
         accessToken = "test-access-token";
         clientId = "test-client-id";
@@ -138,7 +152,7 @@ exports.main = worker(async (source, rendition, params) => {
         formData,
         {
             headers: Object.assign({
-                'Authorization': 'Bearer ' + accessToken,
+                'Authorization': `Bearer ${accessToken}`,
                 'cache-control': 'no-cache,no-cache',
                 'Content-Type': 'multipart/form-data',
                 'x-api-key': clientId,
@@ -163,7 +177,7 @@ exports.main = worker(async (source, rendition, params) => {
         }))
     }, {
         namespaces: {
-            ccai: "https://example.com/schema/ccai"
+            ccai: METADATA_XMP_NAMESPACE
         }
     });
 
