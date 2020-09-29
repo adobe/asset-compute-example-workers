@@ -45,14 +45,16 @@ function parseColors(response) {
             for (const r of cas.result.response) {
                 if (r.feature_name === "color") {
                     for (const value of r.feature_value) {
-                        const [ name, percentage, red, green, blue ] = value.feature_value.split(",");
-                        colors.push({
-                            name,
-                            percentage,
-                            red,
-                            green,
-                            blue
-                        });    
+                        if (typeof value.feature_value === 'string') {
+                            const [ name, percentage, red, green, blue ] = value.feature_value.split(",");
+                            colors.push({
+                                name,
+                                percentage,
+                                red,
+                                green,
+                                blue
+                            });    
+                        }
                     }
                 }
             }
