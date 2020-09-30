@@ -151,7 +151,6 @@ exports.main = worker(async (source, rendition, params) => {
             method: 'post',
             url: endpoint,
             data: formData,
-            maxContentLength: Infinity,
             maxBodyLength: Infinity,
             headers: Object.assign({
                 'Authorization': `Bearer ${accessToken}`,
