@@ -147,18 +147,19 @@ exports.main = worker(async (source, rendition, params) => {
     }
 
     // Execute request
-    const response = await axios.post(
-        endpoint,
-        formData,
-        {
+    const response = await axios({
+            method: 'post',
+            url: endpoint,
+            data: formData,
+            maxContentLength: Infinity,
+            maxBodyLength: Infinity,
             headers: Object.assign({
                 'Authorization': `Bearer ${accessToken}`,
                 'cache-control': 'no-cache,no-cache',
                 'Content-Type': 'multipart/form-data',
                 'x-api-key': clientId,
             }, formData.getHeaders())
-        }
-    );
+    });
     const entities = parseEntities(response.data);
 
     // Parse, sort, serialize to XMP
