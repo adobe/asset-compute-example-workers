@@ -153,18 +153,18 @@ exports.main = worker(async (source, rendition, params) => {
     }
 
     // Execute request
-    const response = await axios.post(
-        endpoint,
-        formData,
-        {
-            headers: Object.assign({
-                'Authorization': 'Bearer ' + accessToken,
-                'cache-control': 'no-cache,no-cache',
-                'Content-Type': 'multipart/form-data',
-                'x-api-key': clientId,
-            }, formData.getHeaders())
-        }
-    );
+    const response = await axios({
+        method: 'post',
+        url: endpoint,
+        data: formData,
+        maxBodyLength: Infinity,
+        headers: Object.assign({
+            'Authorization': `Bearer ${accessToken}`,
+            'cache-control': 'no-cache,no-cache',
+            'Content-Type': 'multipart/form-data',
+            'x-api-key': clientId,
+        }, formData.getHeaders())
+    });
 
     // Parse, sort, serialize to XMP
     const colors = parseColors(response.data);
