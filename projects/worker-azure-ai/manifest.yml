@@ -1,0 +1,26 @@
+packages:
+  __APP_PACKAGE__:
+    license: Apache-2.0
+    actions:
+      worker-azure-ocr:
+        function: actions/worker-azure-ocr/index.js
+        web: 'yes'
+        runtime: 'nodejs:12'
+        inputs:
+          AZURE_OCP_KEY: ${AZURE_OCP_KEY}
+          AZURE_OCP_ENDPOINT: ${AZURE_OCP_ENDPOINT}
+        limits:
+          concurrency: 10
+        annotations:
+          require-adobe-auth: true
+      worker-azure-tagging:
+        function: actions/worker-azure-tagging/index.js
+        web: 'yes'
+        runtime: 'nodejs:12'
+        inputs:
+          AZURE_OCP_KEY: ${AZURE_OCP_KEY}
+          AZURE_OCP_ENDPOINT: ${AZURE_OCP_ENDPOINT}
+        limits:
+          concurrency: 10
+        annotations:
+          require-adobe-auth: true

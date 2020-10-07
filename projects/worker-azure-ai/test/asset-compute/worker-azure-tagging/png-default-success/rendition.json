@@ -1,0 +1,20 @@
+[
+ {
+  "name": "people_portrait",
+  "score": 0.89453125,
+  "detail": {
+   "celebrities": [
+    {
+     "name": "Shantanu Narayen",
+     "confidence": 0.9973090887069702,
+     "faceRectangle": {
+      "left": 135,
+      "top": 160,
+      "width": 155,
+      "height": 155
+     }
+    }
+   ]
+  }
+ }
+]

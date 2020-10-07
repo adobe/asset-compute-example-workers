@@ -1,0 +1,30 @@
+[{
+    "httpRequest": {
+        "path": "/vision/v3.0/ocr",
+        "method": "POST"
+    },
+    "httpResponse": {
+        "statusCode": 200,
+        "body": {
+            "language": "sv",
+            "textAngle": 0,
+            "orientation": "Up",
+            "regions": [
+              {
+                "boundingBox": "8,8,145,43",
+                "lines": [
+                  {
+                    "boundingBox": "8,8,145,43",
+                    "words": [
+                      {
+                        "boundingBox": "8,8,145,43",
+                        "text": "Lagom"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+        }
+    }
+}]
