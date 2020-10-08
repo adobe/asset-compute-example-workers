@@ -10,7 +10,7 @@ dist
 
 # Config
 config.json
-.env*
+*.env
 
 # Adobe I/O console config
 console.json
@@ -32,5 +32,4 @@ coverage
 
 # yeoman
 .yo-repository
-
 
