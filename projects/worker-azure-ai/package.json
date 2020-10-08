@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@adobe/asset-compute-sdk": "^2.2.1",
-    "fs-extra": "^9.0.1",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {

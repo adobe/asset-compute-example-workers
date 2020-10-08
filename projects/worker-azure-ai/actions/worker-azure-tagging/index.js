@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const { worker, GenericError } = require('@adobe/asset-compute-sdk');
-const fetch = require('node-fetch');
-const fs = require('fs');
+const { worker, GenericError } = require("@adobe/asset-compute-sdk");
+const fetch = require("node-fetch");
+const fs = require("fs");
 
 async function renditionCallback(source, rendition, params) {
     // get Azure credentials for API
@@ -11,13 +11,12 @@ async function renditionCallback(source, rendition, params) {
 
     // prevents tests from failing due to credentials not being set
     if (process.env.WORKER_TEST_MODE) {
-        subscriptionKey = "KEY";
+        subscriptionKey = "test-azure-key";
         endpoint = "https://westus.api.cognitive.microsoft.com/";
     }
 
     // check that credentials are set before calling API
-    if (!subscriptionKey) { throw new GenericError('Please provide the subscription key'); }
-    if (!endpoint) { throw new GenericError('Please provide the endpoint'); }
+    if (!subscriptionKey || !endpoint) { throw new GenericError("Missing required credentials for Azure OCR Api."); }
 
     // gets language from Nui request.  If not sprecified, default to English
     const requestedLang = (rendition.instructions && rendition.instructions.language) || "en";
@@ -26,11 +25,11 @@ async function renditionCallback(source, rendition, params) {
 
     // set params for API call
     let options = {
-        method:'POST',
+        method:"POST",
         body: JSON.stringify({"url": source.url}),
         headers: {
-            'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key' : subscriptionKey
+            "Content-Type": "application/json",
+            "Ocp-Apim-Subscription-Key" : subscriptionKey
         }
     };
 
@@ -45,12 +44,12 @@ async function renditionCallback(source, rendition, params) {
             const error = jsonResponse.code ? jsonResponse.code : jsonResponse.error.code;
             throw new Error(error);
         }
-        jsonResponse = JSON.stringify(jsonResponse.categories, null, ' '); // necessary to keep this line so the unit tests pass
-        console.log('response json', jsonResponse);
+        jsonResponse = JSON.stringify(jsonResponse.categories, null, " "); // necessary to keep this line so the unit tests pass
+        console.log("response json", jsonResponse);
         fs.writeFileSync(rendition.path, jsonResponse);
         return(jsonResponse);
     } catch (e) {
-        throw new GenericError('The Azure Analyze Image API call returned an error: ' + e.message);
+        throw new GenericError("The Azure Analyze Image API call returned an error: " + e.message);
     }
 }
 exports.main = worker(renditionCallback);
