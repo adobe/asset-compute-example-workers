@@ -19,17 +19,10 @@ exports.main = worker(async (source, rendition, params) => {
         endpoint = "https://westus.api.cognitive.microsoft.com/";
     }
 
-    // check that credentials are set before calling API
-    if (!subscriptionKey || !endpoint) { 
-        throw new Error("Missing required credentials for Azure Analyze Image Api.");
-    }
-
     // format and execute API request
     const language = (rendition.instructions && rendition.instructions.language) || DEFAULT_LANGUAGE;
     const url = `${endpoint}vision/v3.0/analyze?details=Celebrities&language=${language}`;
-
-    // set params for API call
-    let options = {
+    const options = {
         method:"POST",
         body: JSON.stringify({
             url: source.url

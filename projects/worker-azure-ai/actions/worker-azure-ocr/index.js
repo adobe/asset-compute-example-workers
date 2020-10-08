@@ -19,11 +19,6 @@ exports.main = worker(async (source, rendition, params) => {
         endpoint = "https://westus.api.cognitive.microsoft.com/";
     }
 
-    // check that credentials are set before calling API
-    if (!subscriptionKey || !endpoint) { 
-        throw new Error("Missing required credentials for Azure OCR Api.");
-    }
-
     // format and execute API request
     const language = (rendition.instructions && rendition.instructions.language) || DEFAULT_LANGUAGE;
     const url = `${endpoint}vision/v3.0/ocr?language=${language}&detectOrientation=true`;
