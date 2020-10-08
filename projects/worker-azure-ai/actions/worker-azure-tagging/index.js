@@ -2,54 +2,51 @@
 
 const { worker, GenericError } = require("@adobe/asset-compute-sdk");
 const fetch = require("node-fetch");
-const fs = require("fs");
+const fs = require('fs').promises;
 
-async function renditionCallback(source, rendition, params) {
+const DEFAULT_LANGUAGE = "en";
+
+exports.main = worker(async (source, rendition, params) => {
     // get Azure credentials for API
-    let subscriptionKey = params.AZURE_OCP_KEY;
-    let endpoint = params.AZURE_OCP_ENDPOINT;
+    let subscriptionKey = params && params.AZURE_OCP_KEY;
+    let endpoint = params && params.AZURE_OCP_ENDPOINT;
 
-    // prevents tests from failing due to credentials not being set
+    // WORKER_TEST_MODE is true when you are running worker unit
+    // tests using the `test-worker` command
+    // Dummy authorization parameters needed for mocks 
     if (process.env.WORKER_TEST_MODE) {
         subscriptionKey = "test-azure-key";
         endpoint = "https://westus.api.cognitive.microsoft.com/";
     }
 
     // check that credentials are set before calling API
-    if (!subscriptionKey || !endpoint) { throw new GenericError("Missing required credentials for Azure OCR Api."); }
+    if (!subscriptionKey || !endpoint) { 
+        throw new Error("Missing required credentials for Azure Analyze Image Api.");
+    }
 
-    // gets language from Nui request.  If not sprecified, default to English
-    const requestedLang = (rendition.instructions && rendition.instructions.language) || "en";
-
-    const uriBase = `${endpoint}vision/v3.0/analyze?details=Celebrities&language=${requestedLang}`;
+    // format and execute API request
+    const language = (rendition.instructions && rendition.instructions.language) || DEFAULT_LANGUAGE;
+    const url = `${endpoint}vision/v3.0/analyze?details=Celebrities&language=${language}`;
 
     // set params for API call
     let options = {
         method:"POST",
-        body: JSON.stringify({"url": source.url}),
+        body: JSON.stringify({
+            url: source.url
+        }),
         headers: {
             "Content-Type": "application/json",
             "Ocp-Apim-Subscription-Key" : subscriptionKey
         }
     };
 
-    try {
-        const start = Date.now();
-        const resp = await fetch(uriBase, options);
-        const azureApiDuration = Date.now() - start;
-        params.metrics.add({ azureApiDuration: azureApiDuration })
-        let jsonResponse = await resp.json();
-        if (jsonResponse.code || jsonResponse.error) {  
-            // check if API returned an error     
-            const error = jsonResponse.code ? jsonResponse.code : jsonResponse.error.code;
-            throw new Error(error);
-        }
-        jsonResponse = JSON.stringify(jsonResponse.categories, null, " "); // necessary to keep this line so the unit tests pass
-        console.log("response json", jsonResponse);
-        fs.writeFileSync(rendition.path, jsonResponse);
-        return(jsonResponse);
-    } catch (e) {
-        throw new GenericError("The Azure Analyze Image API call returned an error: " + e.message);
+    const response = await fetch(url, options);
+    const jsonResponse = await response.json();
+    if (jsonResponse.code || jsonResponse.error) {  
+        // Format error code and message like the following:
+        // `The Azure OCR API failed with FailedToProcess: Could not extract image features`
+        throw new GenericError(`The Azure Analyze Image Api failed with ${jsonResponse.code}: ${jsonResponse.error}`);
     }
-}
-exports.main = worker(renditionCallback);
+
+    await fs.writeFile(rendition.path, JSON.stringify(jsonResponse));
+});
