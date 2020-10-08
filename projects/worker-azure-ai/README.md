@@ -1,23 +1,40 @@
-# EasyGreenHorse
+# Azure Cognitive Services Workers
 
-Welcome to my Adobe I/O Application!
+Example of an Asset Compute project leveraging the [Azure Cognitive Services API](https://azure.microsoft.com/en-us/services/cognitive-services/).
+
+This project contains two workers: `worker-azure-ocr` and `worker-azure-tagging` based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
+
+## worker-azure-ocr
+
+This worker uses the [Azure OCR API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts/node-print-text).
+
+
+## worker-azure-tagging
+
+This worker uses the [Azure Analyze Image API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts/node-analyze).
+
 
 ## Setup
 
 - Populate the `.env` file in the project root and fill it as shown [below](#env)
+- Additionally, the following credentials are needed for calling these APIs:
+
+```
+# Azure Cognitive services keys
+AZURE_OCP_KEY=<key>
+AZURE_OCP_ENDPOINT=https://<region>.api.cognitive.microsoft.com/
+```
 
 ## Local Dev
 
 - `aio app run` to start your local Dev server
 - App will run on `localhost:9080` by default
 
-By default the UI will be served locally but actions will be deployed and served from Adobe I/O Runtime. To start a
-local serverless stack and also run your actions locally use the `aio app run --local` option.
+By default the UI will be served locally but actions will be deployed and served from Adobe I/O Runtime.
 
 ## Test & Coverage
 
 - Run `aio app test` to run unit tests for ui and actions
-- Run `aio app test -e` to run e2e tests
 
 ## Deploy & Cleanup
 
@@ -34,6 +51,19 @@ local serverless stack and also run your actions locally use the `aio app run --
 ## please provide your Adobe I/O Runtime credentials
 # AIO_RUNTIME_AUTH=
 # AIO_RUNTIME_NAMESPACE=
+
+## Credentials needed for using the Asset Compute Developer Tool
+## Path to Private Key file for AIO Integration
+# ASSET_COMPUTE_PRIVATE_KEY_FILE_PATH=
+
+## Cloud storage credentials for either AWS S3 or Azure Blob Storage
+# S3_BUCKET=
+# AWS_ACCESS_KEY_ID=
+# AWS_SECRET_ACCESS_KEY=
+# AWS_REGION=
+# AZURE_STORAGE_ACCOUNT=
+# AZURE_STORAGE_KEY=
+# AZURE_STORAGE_CONTAINER_NAME=
 ```
 
 ### `manifest.yml`
@@ -63,21 +93,3 @@ code.
      install the required dependencies within that directory and zip the folder
      before deploying it as a zipped action. Use this method if you want to keep
      your action's dependencies separated.
-
-## Debugging in VS Code
-
-While running your local server (`aio app run`), both UI and actions can be debugged, to do so open the vscode debugger
-and select the debugging configuration called `WebAndActions`.
-Alternatively, there are also debug configs for only UI and each separate action.
-
-## Typescript support for UI
-
-To use typescript use `.tsx` extension for react components and add a `tsconfig.json` 
-and make sure you have the below config added
-```
- {
-  "compilerOptions": {
-      "jsx": "react"
-    }
-  } 
-```
