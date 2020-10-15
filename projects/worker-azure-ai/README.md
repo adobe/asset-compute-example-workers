@@ -1,6 +1,6 @@
 # Azure Cognitive Services Workers
 
-Example of an Asset Compute project leveraging the [Azure Cognitive Services API](https://azure.microsoft.com/en-us/services/cognitive-services/).
+Example of an Asset Compute project leveraging the [Azure Cognitive Services API](https://azure.microsoft.com/en-us/services/cognitive-services/). This worker and all of the code originated from Justin Calloway's [internship project](https://git.corp.adobe.com/calloway/azure_worker).
 
 This project contains two workers: `worker-azure-ocr` and `worker-azure-tagging` based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
