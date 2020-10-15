@@ -113,7 +113,6 @@ exports.main = worker(async (source, rendition, params) => {
         "application-id": "1234",                             
         "content-type": "file",                                         
         "encoding": "pdf",
-        "threshold": 0.01,
         "top-N": DEFAULT_MAX_RESULTS,                                   
         "data": [                                
           {                                   
