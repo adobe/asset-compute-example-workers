@@ -42,4 +42,6 @@ exports.main = worker(async (source, rendition, params) => {
     }
 
     await fs.writeFile(rendition.path, JSON.stringify(jsonResponse));
+}, {
+    disableSourceDownload: true // source presigned url is passed directly to azure api
 });
