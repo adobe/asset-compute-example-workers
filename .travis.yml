@@ -24,3 +24,5 @@ install:
 
 script:
   - cd $TEST_DIR && npm install && npm test
+after_script:
+  - npx @adobe/sizewatcher
