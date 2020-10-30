@@ -1,0 +1,17 @@
+comparators:
+  node_modules:
+    dir:
+      - "projects/worker-animal-pictures"
+      - "projects/worker-azure-ai"
+      - "projects/worker-basic"
+      - "projects/worker-ccai-colorextract"
+      - "projects/worker-ccai-pdfextract"
+      - "projects/worker-metadata"
+  npm_package:
+    dir:
+      - "projects/worker-animal-pictures"
+      - "projects/worker-azure-ai"
+      - "projects/worker-basic"
+      - "projects/worker-ccai-colorextract"
+      - "projects/worker-ccai-pdfextract"
+      - "projects/worker-metadata"
