@@ -24,5 +24,8 @@ install:
 
 script:
   - cd $TEST_DIR && npm install && npm test
+
 after_script:
+  - cd $TRAVIS_BUILD_DIR
+  - pwd
   - npx @adobe/sizewatcher@latest
