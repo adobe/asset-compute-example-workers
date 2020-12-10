@@ -2,10 +2,8 @@
 
 const { worker } = require('@adobe/asset-compute-sdk');
 const sdk = require('@adobe/aio-lib-photoshop-api');
-const libFiles = require('@adobe/aio-lib-files')
-const fs = require('fs').promises;
-
-const TEMP_FILE = 'output/rendition';
+const libFiles = require('@adobe/aio-lib-files');
+const { v4: uuidv4 } = require("uuid");
 
 /**
  * Acquire authorization
@@ -32,29 +30,21 @@ function getAuthorization(params) {
 
 exports.main = worker(async (source, rendition, params) => {
     // Authorization
-    console.log('Get credentials');
     const { orgId, clientId, accessToken } = getAuthorization(params);
+
     // initialize sdk
-    console.log('Set up photoshop client');
     const files = await libFiles.init();
     const client = await sdk.init(orgId, clientId, accessToken, files);
 
     const renditionUrl = Array.isArray(rendition.target)? rendition.target[0]: rendition.target;
-    const tempFilename = `${TEMP_FILE}.jpg`;
+    const fmt = rendition.fmt || "jpg";
+    const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
     // call methods
-    try {
-        console.log('Call photoshop client', renditionUrl);
-        const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: [{
-            "href": rendition.instructions.photoshopAction,
-            "storage": "external"
-          }] });
-        console.log('Result from photoshop client', result);
-        console.log('Result from photoshop client', JSON.stringify(result.outputs));
-
-    } catch (e) {
-        console.error(e)
-    }
+    console.log('Call photoshop client', renditionUrl);
+    const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: rendition.instructions.photoshopActions });
+    console.log('Result from photoshop client', result);
+    console.log('Result from photoshop client', JSON.stringify(result.outputs));
 
     // Working with sources and renditions happens through local files,
     // downloading and uploading is handled by the asset-compute-sdk.

@@ -5,7 +5,8 @@
   "dependencies": {
     "@adobe/aio-lib-files": "^2.0.0",
     "@adobe/aio-lib-photoshop-api": "0.0.4-beta.2",
-    "@adobe/asset-compute-sdk": "^2.2.1"
+    "@adobe/asset-compute-sdk": "^2.2.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "jest": "^24.9.0",

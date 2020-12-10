@@ -2,6 +2,19 @@
 
 Welcome to my Adobe I/O Application!
 
+## Usage
+```
+{
+    "renditions": [
+        {
+            "worker": "https://105979-englishbluehalibut-delbick.adobeioruntime.net/api/v1/web/EnglishBlueHalibut-0.0.1/worker-cc-photoshop",
+            "name": "rendition.jpg"
+            "photoshopAction": "presigned-url"
+        }
+    ]
+}
+```
+
 ## Setup
 
 - Populate the `.env` file in the project root and fill it as shown [below](#env)
