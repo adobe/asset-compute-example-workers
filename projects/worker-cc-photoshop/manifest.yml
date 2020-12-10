@@ -1,0 +1,12 @@
+packages:
+  __APP_PACKAGE__:
+    license: Apache-2.0
+    actions:
+      worker-cc-photoshop:
+        function: actions/worker-cc-photoshop/index.js
+        web: 'yes'
+        runtime: 'nodejs:12'
+        limits:
+          concurrency: 10
+        annotations:
+          require-adobe-auth: true
