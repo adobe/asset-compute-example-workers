@@ -9,7 +9,7 @@ Welcome to my Adobe I/O Application!
         {
             "worker": "https://105979-englishbluehalibut-delbick.adobeioruntime.net/api/v1/web/EnglishBlueHalibut-0.0.1/worker-cc-photoshop",
             "name": "rendition.jpg"
-            "photoshopAction": "presigned-url"
+            "photoshopActions": ["presigned-url"]
         }
     ]
 }
