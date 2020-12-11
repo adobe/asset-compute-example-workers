@@ -1,19 +1,60 @@
-# EnglishBlueHalibut
+# CC Photoshop Api Worker
 
-Welcome to my Adobe I/O Application!
+## Overview
 
-## Usage
-```
+The CC Photoshop Api Worker wraps the Photoshop APIs to be used by AEM. It is built on using [aio-lib-photoshop](https://github.com/adobe/aio-lib-photoshop-api).
+
+It provides the following functionality:
+
+- [Run a Photoshop Action](#photoshop-action) on a photo
+
+## Enabling the APIs in I/O Console
+
+In order to utilize these APIs, the APIs are added to the existing Asset Compute I/O Console integration that is automatically created by Cloud Manager on behalf of the user. Authentication is done service to service through a JWT created based on the technical account associated with the I/O Console integration. This all done behind the scenes by AEM already. The following APIs exposed in I/O Console are used:
+
+- Photoshop API - Creative Cloud Automation Services
+
+These can be enabled in a AEM Cloud environment by following these steps:
+
+- Log in to <https://console.adobe.io/>
+- Switch to the correct organization in the top right corner
+- Switch to the Projects page
+- Find the AEM Cloud environment, once found click on the AEM Cloud environment
+  - You should see the overview page with the Products & Services: I/O Management API, Asset Compute, I/O Events, Experience Platform Launch API, and Asset Compute Journal
+- Add _Photoshop API - Creative Cloud Automation Services_:
+  - Click on _Add to Project_
+  - Select _API_
+  - Click on _Photoshop API - Creative Cloud Automation Services_
+  - Click on _Next_
+  - Select _Service Account (JWT)_
+  - Click on _Next_, which takes you to the Create a new Service Account (JWT) credential
+    - The public key is already provided
+  - Click on _Next_
+  - Select _Default Creative Cloud Automation Services configuration_
+  - Click on _Save configured API_
+
+## Limitations
+
+- Creative Automation APIs do not support multi-part upload and only support a single URL. This means outputs larger than 100MB on Azure are not currently supported.
+- The Creative Processing Profile UI in AEM only supports a single operation
+
+## API
+### Photoshop Action
+
+Supported formats:
+
+- Input: `png`, `jpeg`, `psd`
+- Output: `png`, `jpeg`, `psd`
+
+```json
 {
-    "renditions": [
-        {
-            "worker": "https://105979-englishbluehalibut-delbick.adobeioruntime.net/api/v1/web/EnglishBlueHalibut-0.0.1/worker-cc-photoshop",
-            "name": "rendition.jpg"
-            "photoshopActions": ["presigned-url"]
-        }
-    ]
+    "worker": "<custom-worker-url>",
+    "name": "rendition.jpg",
+    "fmt": "jpg",
+    "photoshopActions": ["presigned-url"]
 }
 ```
+
 
 ## Setup
 
