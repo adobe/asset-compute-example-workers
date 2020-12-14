@@ -64,7 +64,7 @@ Supported formats:
 Requirements:
 
 - Access to _Photoshop API - Creative Cloud Automation Services_ in the [Adobe Developer Console](https://console.adobe.io).
-- [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/), version 10 or 12
 - [aio cli](https://github.com/adobe/aio-cli)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
