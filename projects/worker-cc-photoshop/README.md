@@ -51,7 +51,7 @@ Supported formats:
     "worker": "<custom-worker-url>",
     "name": "rendition.jpg",
     "fmt": "jpg",
-    "photoshopActions": ["presigned-url"]
+    "photoshopActions": "presigned-url"
 }
 ```
 
@@ -71,7 +71,6 @@ local serverless stack and also run your actions locally use the `aio app run --
 ## Test & Coverage
 
 - Run `aio app test` to run unit tests for ui and actions
-- Run `aio app test -e` to run e2e tests
 
 ## Deploy & Cleanup
 

@@ -35,14 +35,19 @@ exports.main = worker(async (source, rendition, params) => {
     // initialize sdk
     const files = await libFiles.init();
     const client = await sdk.init(orgId, clientId, accessToken, files);
-    
+
     const fmt = rendition.fmt || "jpg";
     const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
     // call methods
     console.log('Call photoshop client', tempFilename);
     const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: rendition.instructions.photoshopActions });
-    console.log('Result from photoshop client', result);
+
+    if (result && result.outputs && result.outputs[0].status === 'failed') {
+        const errors = result.outputs[0].errors;
+        console.log(errors);
+        throw new Error(`Photoshop API failed: ${errors.code} ${errors.title}`);
+    } 
     console.log('Result from photoshop client', JSON.stringify(result.outputs));
 
     // Working with sources and renditions happens through local files,
