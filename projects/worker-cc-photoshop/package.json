@@ -1,7 +1,8 @@
 {
-  "name": "EnglishBlueHalibut",
+  "name": "worker-cc-photoshop",
   "version": "0.0.1",
   "private": true,
+  "description": "Asset Compute custom worker leveraging Photoshop Actions in the Photoshop API",
   "dependencies": {
     "@adobe/aio-lib-files": "^2.0.0",
     "@adobe/aio-lib-photoshop-api": "0.0.4-beta.2",
