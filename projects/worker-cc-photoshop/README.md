@@ -2,7 +2,7 @@
 
 ## Overview
 
-The CC Photoshop Api Worker wraps the Photoshop APIs to be used by AEM. It is built on using [aio-lib-photoshop](https://github.com/adobe/aio-lib-photoshop-api).
+The CC Photoshop Api Worker wraps the Photoshop APIs to be used by AEM. It is built on top of [aio-lib-photoshop](https://github.com/adobe/aio-lib-photoshop-api).
 
 It provides the following functionality:
 
