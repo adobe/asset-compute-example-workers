@@ -33,13 +33,11 @@ These can be enabled in a AEM Cloud environment by following these steps:
   - Select _Default Creative Cloud Automation Services configuration_
   - Click on _Save configured API_
 
-## Limitations
-
-- Creative Automation APIs do not support multi-part upload and only support a single URL. This means outputs larger than 100MB on Azure are not currently supported.
-- The Creative Processing Profile UI in AEM only supports a single operation
-
 ## API
 ### Photoshop Action
+
+Uses the [Photoshop Actions API](https://github.com/adobe/aio-lib-photoshop-api#PhotoshopAPI+applyPhotoshopActions)
+REST API: https://adobedocs.github.io/photoshop-api-docs-pre-release/#api-Photoshop-photoshopActions
 
 Supported formats:
 
@@ -55,82 +53,68 @@ Supported formats:
 }
 ```
 
+## Limitations
+
+- Creative Automation APIs do not support multi-part upload and only support a single URL. This means outputs larger than 100MB on Azure are not currently supported.
+- The Creative Processing Profile UI in AEM only supports a single operation
+
 
 ## Setup
 
-- Populate the `.env` file in the project root and fill it as shown [below](#env)
+Requirements:
 
-## Local Dev
+- Access to _Photoshop API - Creative Cloud Automation Services_ in the [Adobe Developer Console](https://console.adobe.io).
+- [Node.js](https://nodejs.org/en/)
+- [aio cli](https://github.com/adobe/aio-cli)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
-- `aio app run` to start your local Dev server
-- App will run on `localhost:9080` by default
+### Create Firefly Project
 
-By default the UI will be served locally but actions will be deployed and served from Adobe I/O Runtime. To start a
-local serverless stack and also run your actions locally use the `aio app run --local` option.
+Review the [Asset Compute Extensibility Documentation](https://experienceleague.adobe.com/docs/asset-compute/using/extend/understand-extensibility.html?lang=en#extend) for more detailed information.
 
-## Test & Coverage
+- [Setup a developer environment](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en#extend) including the Firefly project
+  - Make sure to add _Photoshop API - Creative Cloud Automation Services_ Service Account (JWT) API to the workspaces
+- Select your Firefly project
+- Select the Workspace where you added the Photoshop API service
+- Click on _Download All_ in the top right corner. This will download the _Adobe I/O Developer Console configuration file_
 
-- Run `aio app test` to run unit tests for ui and actions
+### Deploy
 
-## Deploy & Cleanup
+- Download the sources of this repository
+- Go to the `worker-cc-photoshop` directory
+- Run `npm install`
+- Run `aio app use <Path to Adobe I/O Developer Console configuration file>`
+  - This will setup your `.env` to point at the Firefly project and workspace
+- Run `aio app deploy` to deploy the application
 
-- `aio app deploy` to build and deploy all actions on Runtime and static files to CDN
-- `aio app undeploy` to undeploy the app
+### Review logs
 
-## Config
+- Use `aio app logs` to review the logs of the most recent invocation
 
-### `.env`
+## Integrating with AEM Cloud Service
 
-```bash
-# This file must not be committed to source control
+### Create a Processing Profile
 
-## please provide your Adobe I/O Runtime credentials
-# AIO_RUNTIME_AUTH=
-# AIO_RUNTIME_NAMESPACE=
-```
+- From the AEM homepage, navigate to Tools -> Assets -> Processing profiles -> Create
+- Select the Custom tab
+- Add a rendition name and extension
+- For _Endpoint URL_, input the URL of the worker as seen after running `aio app deploy`
+- Add `photoshopActions` service parameter and set the value to presigned url for a photoshop action
+- Click on Save
 
-### `manifest.yml`
+![Processing Profile](./processingProfile.png)
+  
+### Associate Processing Profile with Folder
 
-- List your backend actions under the `actions` field within the `__APP_PACKAGE__`
-package placeholder. We will take care of replacing the package name placeholder
-by your project name and version.
-- For each action, use the `function` field to indicate the path to the action
-code.
-- More documentation for supported action fields can be found
-[here](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/specification/html/spec_actions.md#actions).
+- Select the created Processing Profile
+- Click on _Apply Profile to Folder(s)_
+- Select a folder
+- Click on _Apply_
 
-#### Action Dependencies
 
-- You have two options to resolve your actions' dependencies:
+### End to end test
 
-  1. **Packaged action file**: Add your action's dependencies to the root
-   `package.json` and install them using `npm install`. Then set the `function`
-   field in `manifest.yml` to point to the **entry file** of your action
-   folder. We will use `parcelJS` to package your code and dependencies into a
-   single minified js file. The action will then be deployed as a single file.
-   Use this method if you want to reduce the size of your actions.
-
-  2. **Zipped action folder**: In the folder containing the action code add a
-     `package.json` with the action's dependencies. Then set the `function`
-     field in `manifest.yml` to point to the **folder** of that action. We will
-     install the required dependencies within that directory and zip the folder
-     before deploying it as a zipped action. Use this method if you want to keep
-     your action's dependencies separated.
-
-## Debugging in VS Code
-
-While running your local server (`aio app run`), both UI and actions can be debugged, to do so open the vscode debugger
-and select the debugging configuration called `WebAndActions`.
-Alternatively, there are also debug configs for only UI and each separate action.
-
-## Typescript support for UI
-
-To use typescript use `.tsx` extension for react components and add a `tsconfig.json` 
-and make sure you have the below config added
-```
- {
-  "compilerOptions": {
-      "jsx": "react"
-    }
-  } 
-```
+- Upload a PNG or JPG to the folder that has the _Processing Profile_ associated with it
+- Wait for the asset to stop processing
+- Click on the asset
+- Click on renditions
