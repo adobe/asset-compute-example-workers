@@ -1,7 +1,7 @@
 
 [{
-    "httpRequest": {
-		"path": "/pie/psdService/photoshopActions",
+  "httpRequest": {
+    "path": "/pie/psdService/photoshopActions",
         "method": "POST",
         "headers" : {
             "X-Api-Key" : [ "test-client-id" ],

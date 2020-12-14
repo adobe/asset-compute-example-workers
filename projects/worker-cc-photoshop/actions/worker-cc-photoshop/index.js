@@ -33,7 +33,6 @@ exports.main = worker(async (source, rendition, params) => {
     // Authorization
     const { orgId, clientId, accessToken } = getAuthorization(params);
 
-    // initialize sdk
     // Initialize
     let files;
     if (process.env.WORKER_TEST_MODE) {
