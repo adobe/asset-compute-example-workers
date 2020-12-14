@@ -8,5 +8,6 @@ packages:
         runtime: 'nodejs:12'
         limits:
           concurrency: 10
+          timeout: 300000
         annotations:
           require-adobe-auth: true
