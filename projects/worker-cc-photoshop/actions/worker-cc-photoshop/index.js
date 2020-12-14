@@ -4,6 +4,7 @@ const { worker } = require('@adobe/asset-compute-sdk');
 const sdk = require('@adobe/aio-lib-photoshop-api');
 const libFiles = require('@adobe/aio-lib-files');
 const { v4: uuidv4 } = require("uuid");
+const { AioLibFilesMock } = require("../../lib/mock-aio-lib-files");
 
 /**
  * Acquire authorization
@@ -33,22 +34,32 @@ exports.main = worker(async (source, rendition, params) => {
     const { orgId, clientId, accessToken } = getAuthorization(params);
 
     // initialize sdk
-    const files = await libFiles.init();
+    // Initialize
+    let files;
+    if (process.env.WORKER_TEST_MODE) {
+        // Mock aio-lib-files in test mode in order to avoid having to mock
+        // the Azure and Token Vending Machine (TVM) APIs that aio-lib-files uses.
+        // The purpose of the tests is to make sure it uses the Photoshop APIs correctly.
+        files = new AioLibFilesMock();
+    } else {
+        files = await libFiles.init();
+    }
     const client = await sdk.init(orgId, clientId, accessToken, files);
 
-    const fmt = rendition.fmt || "jpg";
+    const fmt = rendition.instructions.fmt || "jpg";
     const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
     // call methods
-    console.log('Call photoshop client', tempFilename);
+    if (!rendition.instructions.photoshopActions) {
+        throw Error("Photoshop Action url not provided");
+    }
     const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: rendition.instructions.photoshopActions });
 
     if (result && result.outputs && result.outputs[0].status === 'failed') {
         const errors = result.outputs[0].errors;
-        console.log(errors);
+        console.error(errors);
         throw new Error(`Photoshop API failed: ${errors.code} ${errors.title}`);
     } 
-    console.log('Result from photoshop client', JSON.stringify(result.outputs));
 
     // Working with sources and renditions happens through local files,
     // downloading and uploading is handled by the asset-compute-sdk.
