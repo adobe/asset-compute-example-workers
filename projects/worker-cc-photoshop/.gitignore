@@ -11,6 +11,7 @@ dist
 # Config
 config.json
 .env*
+private.key
 
 # Adobe I/O console config
 console.json

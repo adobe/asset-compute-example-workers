@@ -35,13 +35,12 @@ exports.main = worker(async (source, rendition, params) => {
     // initialize sdk
     const files = await libFiles.init();
     const client = await sdk.init(orgId, clientId, accessToken, files);
-
-    const renditionUrl = Array.isArray(rendition.target)? rendition.target[0]: rendition.target;
+    
     const fmt = rendition.fmt || "jpg";
     const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
     // call methods
-    console.log('Call photoshop client', renditionUrl);
+    console.log('Call photoshop client', tempFilename);
     const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: rendition.instructions.photoshopActions });
     console.log('Result from photoshop client', result);
     console.log('Result from photoshop client', JSON.stringify(result.outputs));
