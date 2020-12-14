@@ -50,10 +50,10 @@ exports.main = worker(async (source, rendition, params) => {
     const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
     // call methods
-    if (!rendition.instructions.photoshopActions) {
+    if (!rendition.instructions.photoshopAction) {
         throw Error("Photoshop Action url not provided");
     }
-    const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: rendition.instructions.photoshopActions });
+    const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: rendition.instructions.photoshopAction });
 
     if (result && result.outputs && result.outputs[0].status === 'failed') {
         const errors = result.outputs[0].errors;

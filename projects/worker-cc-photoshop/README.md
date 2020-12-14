@@ -49,7 +49,7 @@ Supported formats:
     "worker": "<custom-worker-url>",
     "name": "rendition.jpg",
     "fmt": "jpg",
-    "photoshopActions": "presigned-url"
+    "photoshopAction": "presigned-url"
 }
 ```
 
