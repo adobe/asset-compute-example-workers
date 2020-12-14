@@ -6,7 +6,7 @@ The CC Photoshop Api Worker wraps the Photoshop APIs to be used by AEM. It is bu
 
 It provides the following functionality:
 
-- [Run a Photoshop Action](#photoshop-action) on a photo
+- [Run a Photoshop Action](#photoshop-action) on an image
 
 ## Enabling the APIs in I/O Console
 
