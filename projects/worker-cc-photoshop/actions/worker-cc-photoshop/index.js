@@ -60,16 +60,15 @@ exports.main = worker(async (source, rendition, params) => {
     const fmt = rendition.instructions.fmt || "jpg";
     const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
-    // call methods
+    // call photoshopActions API
     if (!rendition.instructions.photoshopAction) {
         throw Error("Photoshop Action url not provided");
     }
-
     const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: rendition.instructions.photoshopAction });
     console.log('Response from Photoshop API', result);
     if (result && result.outputs && result.outputs[0].status === 'failed') {
         const errors = result.outputs[0].errors;
-        console.error('Error:', errors);
+        console.error('Photoshop API failed:', errors);
         throw new Error(`Photoshop API failed: ${errors.code} ${errors.title}`);
     } 
 
