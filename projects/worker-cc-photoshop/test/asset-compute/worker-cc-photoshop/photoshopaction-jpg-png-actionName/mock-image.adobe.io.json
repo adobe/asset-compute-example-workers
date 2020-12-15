@@ -1,0 +1,66 @@
+
+[{
+  "httpRequest": {
+    "path": "/pie/psdService/photoshopActions",
+        "method": "POST",
+        "headers" : {
+            "X-Api-Key" : [ "test-client-id" ],
+            "Authorization" : [ "Bearer test-access-token" ],
+            "Content-Type" : [ "application/json" ]
+        },
+        "body" : {
+            "inputs" : [ {
+              "href" : "https://www.azureedge.net/3600/r/file.jpg",
+              "storage" : "azure"  
+              } ],
+              "options": {
+                "actions": [
+                  {
+                    "href": "https://raw.githubusercontent.com/johnleetran/ps-actions-samples/master/actions/Oil-paint.atn",
+                    "storage": "external",
+                    "actionName": "Oil Paint 1"
+                  }
+                ]
+              },
+              "outputs" : [ {
+              "href" : "https://www.azureedge.net/3600/rwd/rendition.png",
+              "storage" : "azure",
+              "type" : "image/png"
+            } ]
+        }
+    },
+    "httpResponse": {
+        "statusCode": 200,
+        "body": {
+          "type": "JSON",
+          "json": {
+              "_links": {
+                  "self": {
+                      "href": "https://image.adobe.io/pie/psdService/status/1234"
+                  }
+              }
+          }
+        }
+    }
+}, {
+    "httpRequest": {
+		"path": "/pie/psdService/status/1234",
+		"method": "GET"
+    },
+    "httpResponse": {
+        "statusCode": 200,
+        "body": {
+          "type": "JSON",
+          "json": {
+              "outputs": [{
+                  "status": "succeeded"
+              }],
+              "_links": {
+                "self": {
+                    "href": "https://image.adobe.io/pie/psdService/status/1234"
+                }
+            }
+          }
+        }
+    }
+}]
