@@ -55,7 +55,7 @@ Supported formats:
 
 You can test using our sample [fisheye photoshop action](./files/fisheye.atn).
 
-#### Example with Photoshop Action with multiple actions in the set
+#### Example Photoshop Action with multiple actions in the set
 If you have an action file with multiple photoshop actions in the set, use the `photoshopActionName` parameter to call only one of the actions.
 ```
 {
