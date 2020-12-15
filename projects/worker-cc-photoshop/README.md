@@ -99,7 +99,7 @@ Review the [Asset Compute Extensibility Documentation](https://experienceleague.
 - Select the Custom tab
 - Add a rendition name and extension
 - For _Endpoint URL_, input the URL of the worker as seen after running `aio app deploy`
-- Add `photoshopActions` service parameter and set the value to presigned url for a photoshop action
+- Add `` service parameter and set the value to presigned url for a photoshop action
 - Click on Save
 
 ![Processing Profile](./processingProfile.png)
