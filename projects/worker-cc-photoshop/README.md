@@ -106,7 +106,7 @@ Review the [Asset Compute Extensibility Documentation](https://experienceleague.
 - Add `` service parameter and set the value to presigned url for a photoshop action
 - Click on Save
 
-![Processing Profile](./processingProfile.png)
+![Processing Profile](./files/processingProfile.png)
   
 ### Associate Processing Profile with Folder
 
