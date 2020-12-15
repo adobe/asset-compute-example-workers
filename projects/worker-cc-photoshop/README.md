@@ -53,6 +53,9 @@ Supported formats:
 }
 ```
 
+You can test using our sample [fisheye photoshop action](./files/fisheye.atn).
+
+
 ## Limitations
 
 - Creative Automation APIs do not support multi-part upload and only support a single URL. This means outputs larger than 100MB on Azure are not currently supported.
