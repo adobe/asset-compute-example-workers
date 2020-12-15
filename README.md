@@ -21,6 +21,10 @@ Example of a 3rd party Asset Compute Metadata worker. It provides examples of ge
 
 Example of a custom Asset Compute Metadata worker leveraging the [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) Color extraction API.
 
+## [worker-cc-photoshop](projects/worker-cc-photoshop)
+
+Example of a custom Asset Compute worker that leverages [Adobe I/O Photoshop API SDK](https://github.com/adobe/aio-lib-photoshop-api) to create asset rendition that is a result of applying a selected Photoshop Action to the uploaded source asset.
+
 ## Contributing
 
 Contributions are welcomed! Read the [Contributing Guide](./.github/CONTRIBUTING.md) for more information.
