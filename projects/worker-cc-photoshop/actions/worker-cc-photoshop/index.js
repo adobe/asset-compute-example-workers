@@ -17,6 +17,8 @@ const sdk = require('@adobe/aio-lib-photoshop-api');
 const libFiles = require('@adobe/aio-lib-files');
 const { v4: uuidv4 } = require("uuid");
 const { AioLibFilesMock } = require("../../lib/mock-aio-lib-files");
+const path = require("path");
+const { downloadFile } = require('@adobe/httptransfer');
 
 /**
  * Acquire authorization
@@ -51,11 +53,30 @@ function getAuthorization(params) {
  * @param {Object} instructions Rendition instructions
  * @returns {Object} options for Photoshop Actions Api request
  */
-async function setupPhotoshopActionsOptions(client, instructions) {
+async function setupPhotoshopActionsOptions(client, instructions, files) {
     if (!instructions || !instructions.photoshopAction) {
         throw Error("Photoshop Action url not provided");
     }
-    const options = await client.fileResolver.resolveInputsPhotoshopActionsOptions({ actions: instructions.photoshopAction });
+    
+    // workaround for action files from AEM
+    // we must download the action file and add the `.atn`
+    // extension to the file so Photoshop Service can
+    // recognize it
+    let photoshopAction = instructions.photoshopAction;
+    let ext;
+        try {
+            ext = path.extname(photoshopAction).substring(1).toLowerCase();
+        } catch (err) {
+        }
+        if (!ext) {
+            const tempActionFilename = `${uuidv4()}_temp.atn`;
+            const aioLibActionFilename = `${uuidv4()}/photoshopaction.atn`;;
+            await downloadFile(photoshopAction, tempActionFilename);
+            await files.copy(tempActionFilename, aioLibActionFilename, { localSrc: true });
+            photoshopAction = aioLibActionFilename;
+            
+        }
+    const options = await client.fileResolver.resolveInputsPhotoshopActionsOptions({ actions: photoshopAction });
     if (options && Array.isArray(options.actions) && instructions.photoshopActionName) {
         options.actions[0].actionName = instructions.photoshopActionName;
     }
@@ -82,7 +103,7 @@ exports.main = worker(async (source, rendition, params) => {
     const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
     // call photoshopActions API
-    const options = await setupPhotoshopActionsOptions(client, rendition.instructions);
+    const options = await setupPhotoshopActionsOptions(client, rendition.instructions, files);
     const result = await client.applyPhotoshopActions(source.url, tempFilename, options);
     console.log('Response from Photoshop API', result);
     if (result && result.outputs && result.outputs[0].status === 'failed') {
