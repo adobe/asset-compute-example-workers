@@ -64,18 +64,18 @@ async function setupPhotoshopActionsOptions(client, instructions, files) {
     // recognize it
     let photoshopAction = instructions.photoshopAction;
     let ext;
-        try {
-            ext = path.extname(photoshopAction).substring(1).toLowerCase();
-        } catch (err) {
-        }
-        if (!ext) {
-            const tempActionFilename = `${uuidv4()}_temp.atn`;
-            const aioLibActionFilename = `${uuidv4()}/photoshopaction.atn`;
-            await downloadFile(photoshopAction, tempActionFilename);
-            await files.copy(tempActionFilename, aioLibActionFilename, { localSrc: true });
-            photoshopAction = aioLibActionFilename;
-            
-        }
+    try {
+        ext = path.extname(photoshopAction).substring(1).toLowerCase();
+    } catch (err) {
+    }
+    if (!ext) {
+        const tempActionFilename = `${uuidv4()}_temp.atn`;
+        const aioLibActionFilename = `${uuidv4()}/photoshopaction.atn`;
+        await downloadFile(photoshopAction, tempActionFilename);
+        await files.copy(tempActionFilename, aioLibActionFilename, { localSrc: true });
+        photoshopAction = aioLibActionFilename;
+        
+    }
     const options = {
         actions: [{
             href: photoshopAction
