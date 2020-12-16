@@ -49,12 +49,23 @@ Supported formats:
     "worker": "<custom-worker-url>",
     "name": "rendition.jpg",
     "fmt": "jpg",
-    "photoshopAction": "presigned-url"
+    "photoshopAction": "<presigned-url>"
 }
 ```
 
 You can test using our sample [fisheye photoshop action](./files/fisheye.atn).
 
+#### Example Photoshop Action with multiple actions in the set
+If you have an action file with multiple photoshop actions in the set, use the `photoshopActionName` parameter to call only one of the actions.
+```
+{
+    "worker": "https:/mynamespace.adobeioruntime.net/api/v1/web/myactionname/worker-cc-photoshop",
+    "name": "rendition.jpg",
+    "photoshopAction":"<presigned-url>",
+    "photoshopActionName": "Oil Paint Action 1"
+}
+```
+_Note: All actions in the set will be played if none are specified_
 
 ## Limitations
 

@@ -41,6 +41,27 @@ function getAuthorization(params) {
     return { orgId, clientId, accessToken };
 }
 
+/**
+ * Set up Photoshop Action Options
+ * 
+ * Resolve file types, add actionName parameter and 
+ * set up options for Photoshop Actions Api request
+ * 
+ * @param {*} client Photoshop Api Client instance
+ * @param {Object} instructions Rendition instructions
+ * @returns {Object} options for Photoshop Actions Api request
+ */
+async function setupPhotoshopActionsOptions(client, instructions) {
+    if (!instructions || !instructions.photoshopAction) {
+        throw Error("Photoshop Action url not provided");
+    }
+    const options = await client.fileResolver.resolveInputsPhotoshopActionsOptions({ actions: instructions.photoshopAction });
+    if (options && Array.isArray(options.actions) && instructions.photoshopActionName) {
+        options.actions[0].actionName = instructions.photoshopActionName;
+    }
+    return options;
+}
+
 exports.main = worker(async (source, rendition, params) => {
     // Authorization
     const { orgId, clientId, accessToken } = getAuthorization(params);
@@ -61,10 +82,8 @@ exports.main = worker(async (source, rendition, params) => {
     const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
     // call photoshopActions API
-    if (!rendition.instructions.photoshopAction) {
-        throw Error("Photoshop Action url not provided");
-    }
-    const result = await client.applyPhotoshopActions(source.url, tempFilename, { actions: rendition.instructions.photoshopAction });
+    const options = await setupPhotoshopActionsOptions(client, rendition.instructions);
+    const result = await client.applyPhotoshopActions(source.url, tempFilename, options);
     console.log('Response from Photoshop API', result);
     if (result && result.outputs && result.outputs[0].status === 'failed') {
         const errors = result.outputs[0].errors;
