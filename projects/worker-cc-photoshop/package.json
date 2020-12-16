@@ -1,6 +1,6 @@
 {
   "name": "worker-cc-photoshop",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "Asset Compute custom worker leveraging Photoshop Actions in the Photoshop API",
   "dependencies": {

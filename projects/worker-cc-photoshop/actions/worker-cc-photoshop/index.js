@@ -57,7 +57,7 @@ async function setupPhotoshopActionsOptions(client, instructions, files) {
     if (!instructions || !instructions.photoshopAction) {
         throw Error("Photoshop Action url not provided");
     }
-    
+
     // workaround for action files from AEM
     // we must download the action file and add the `.atn`
     // extension to the file so Photoshop Service can
@@ -76,7 +76,11 @@ async function setupPhotoshopActionsOptions(client, instructions, files) {
             photoshopAction = aioLibActionFilename;
             
         }
-    const options = await client.fileResolver.resolveInputsPhotoshopActionsOptions({ actions: photoshopAction });
+    const options = {
+        actions: [{
+            href: photoshopAction
+        }]
+    }
     if (options && Array.isArray(options.actions) && instructions.photoshopActionName) {
         options.actions[0].actionName = instructions.photoshopActionName;
     }
