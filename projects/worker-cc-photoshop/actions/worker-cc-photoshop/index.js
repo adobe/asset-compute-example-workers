@@ -70,7 +70,7 @@ async function setupPhotoshopActionsOptions(client, instructions, files) {
         }
         if (!ext) {
             const tempActionFilename = `${uuidv4()}_temp.atn`;
-            const aioLibActionFilename = `${uuidv4()}/photoshopaction.atn`;;
+            const aioLibActionFilename = `${uuidv4()}/photoshopaction.atn`;
             await downloadFile(photoshopAction, tempActionFilename);
             await files.copy(tempActionFilename, aioLibActionFilename, { localSrc: true });
             photoshopAction = aioLibActionFilename;
