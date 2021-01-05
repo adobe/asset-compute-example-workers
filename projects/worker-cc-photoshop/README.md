@@ -17,21 +17,22 @@ In order to utilize these APIs, the APIs are added to the existing Asset Compute
 These can be enabled in a AEM Cloud environment by following these steps:
 
 - Log in to <https://console.adobe.io/>
-- Switch to the correct organization in the top right corner
+- Switch to the correct organization in the top right corner. This must be the org where your AEM Cloud environment exists.
 - Switch to the Projects page
-- Find the AEM Cloud environment, once found click on the AEM Cloud environment
-  - You should see the overview page with the Products & Services: I/O Management API, Asset Compute, I/O Events, Experience Platform Launch API, and Asset Compute Journal
-- Add _Photoshop API - Creative Cloud Automation Services_:
-  - Click on _Add to Project_
-  - Select _API_
-  - Click on _Photoshop API - Creative Cloud Automation Services_
-  - Click on _Next_
-  - Select _Service Account (JWT)_
-  - Click on _Next_, which takes you to the Create a new Service Account (JWT) credential
-    - The public key is already provided
-  - Click on _Next_
-  - Select _Default Creative Cloud Automation Services configuration_
-  - Click on _Save configured API_
+- [Create a new project using the Firefly Template](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en#create-firefly-project). Move into the workspace you would like to work in.
+- Add the necessary services for Asset Compute Development:  I/O Management API, Asset Compute, I/O Events
+- Also add the following service necessary for creating this worker:
+  - Add _Photoshop API - Creative Cloud Automation Services_:
+    - Click on _Add to Project_
+    - Select _API_
+    - Click on _Photoshop API - Creative Cloud Automation Services_
+    - Click on _Next_
+    - Select _Service Account (JWT)_
+    - Click on _Next_, which takes you to the Create a new Service Account (JWT) credential
+      - The public key is already provided
+    - Click on _Next_
+    - Select _Default Creative Cloud Automation Services configuration_
+    - Click on _Save configured API_
 
 ## API
 ### Photoshop Action
