@@ -21,6 +21,7 @@ These can be enabled in a AEM Cloud environment by following these steps:
 - Switch to the Projects page
 - Find the AEM Cloud environment, once found click on the AEM Cloud environment
   - You should see the overview page with the Products & Services: I/O Management API, Asset Compute, I/O Events, Experience Platform Launch API, and Asset Compute Journal
+  - If your AEM Cloud Environment does not have runtime enabled, [create a new project using the Firefly Template](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en#create-firefly-project) in the same org. Add the necessary services listed above to the workspace you would like to work in:  I/O Management API, Asset Compute, I/O Events, Experience Platform Launch API, and Asset Compute Journal
 - Add _Photoshop API - Creative Cloud Automation Services_:
   - Click on _Add to Project_
   - Select _API_
