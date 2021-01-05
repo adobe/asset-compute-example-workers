@@ -17,7 +17,7 @@ In order to utilize these APIs, the APIs are added to the existing Asset Compute
 These can be enabled in a AEM Cloud environment by following these steps:
 
 - Log in to <https://console.adobe.io/>
-- Switch to the correct organization in the top right corner. This must be the org where you AEM Cloud environment exists.
+- Switch to the correct organization in the top right corner. This must be the org where your AEM Cloud environment exists.
 - Switch to the Projects page
 - [Create a new project using the Firefly Template](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en#create-firefly-project). Move into the workspace you would like to work in.
 - Add the necessary services for Asset Compute Development:  I/O Management API, Asset Compute, I/O Events
