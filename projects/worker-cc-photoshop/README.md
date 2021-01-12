@@ -116,7 +116,7 @@ Review the [Asset Compute Extensibility Documentation](https://experienceleague.
 - Add a rendition name and extension
 - For _Endpoint URL_, input the URL of the worker as seen after running `aio app deploy`: 
    - It should look like this: `https://<namespace>.adobeioruntime.net/api/v1/web/<appname>-0.0.1/<worker-name>`
-   - _Note: If you see a different hostname: `adobeio-static.net`, your action got deployedwith Web Assets. If this was not on purpose, please remove the Web Assets using `aio app delete web-assets`. Actions deployed with Web Assets use different authentification that is not supported out of the box by the Asset Compute Service. See details [here](https://www.adobe.io/apis/experienceplatform/project-firefly/docs.html#!AdobeDocs/project-firefly/master/getting_started/common_troubleshooting.md#action-authentication-errors)._
+   - _Note: If you see a different hostname: `adobeio-static.net`, your action got deployed with Web Assets. If this was not on purpose, please remove the Web Assets using `aio app delete web-assets`. Actions deployed with Web Assets use different authentification that is not supported out of the box by the Asset Compute Service. See details [here](https://www.adobe.io/apis/experienceplatform/project-firefly/docs.html#!AdobeDocs/project-firefly/master/getting_started/common_troubleshooting.md#action-authentication-errors)._
 - Add `photoshopAction` service parameter and set the value to presigned url for a photoshop action
 - Click on Save
 
