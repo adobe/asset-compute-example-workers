@@ -65,7 +65,8 @@ async function setupPhotoshopActionsOptions(client, instructions, files) {
     let photoshopAction = instructions.photoshopAction;
     let ext;
     try {
-        ext = path.extname(photoshopAction).substring(1).toLowerCase();
+        const url = new URL(photoshopAction);
+        ext = path.extname(url.pathname).substring(1).toLowerCase();
     } catch (err) {
     }
     if (!ext) {
