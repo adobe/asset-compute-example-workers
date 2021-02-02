@@ -53,8 +53,8 @@ function getAuthorization(params) {
  * @param {Object} instructions Rendition instructions
  * @returns {Object} options for Photoshop Actions Api request
  */
-async function setupPhotoshopActionsOptions(client, instructions, files) {
-    if (!instructions || !instructions.photoshopAction) {
+async function setuphotoshopActionsOptions(client, instructions, files) {
+    if (!instructions || !instructions.photoshopActions) {
         throw Error("Photoshop Action url not provided");
     }
 
@@ -62,27 +62,27 @@ async function setupPhotoshopActionsOptions(client, instructions, files) {
     // we must download the action file and add the `.atn`
     // extension to the file so Photoshop Service can
     // recognize it
-    let photoshopAction = instructions.photoshopAction;
+    let photoshopActions = instructions.photoshopActions;
     let ext;
     try {
-        ext = path.extname(photoshopAction).substring(1).toLowerCase();
+        ext = path.extname(photoshopActions).substring(1).toLowerCase();
     } catch (err) {
     }
     if (!ext) {
         const tempActionFilename = `${uuidv4()}_temp.atn`;
-        const aioLibActionFilename = `${uuidv4()}/photoshopaction.atn`;
-        await downloadFile(photoshopAction, tempActionFilename);
+        const aioLibActionFilename = `${uuidv4()}/photoshopActions.atn`;
+        await downloadFile(photoshopActions, tempActionFilename);
         await files.copy(tempActionFilename, aioLibActionFilename, { localSrc: true });
-        photoshopAction = aioLibActionFilename;
+        photoshopActions = aioLibActionFilename;
         
     }
     const options = {
         actions: [{
-            href: photoshopAction
+            href: photoshopActions
         }]
     }
-    if (options && Array.isArray(options.actions) && instructions.photoshopActionName) {
-        options.actions[0].actionName = instructions.photoshopActionName;
+    if (options && Array.isArray(options.actions) && instructions.photoshopActionsName) {
+        options.actions[0].actionName = instructions.photoshopActionsName;
     }
     return options;
 }
@@ -107,7 +107,7 @@ exports.main = worker(async (source, rendition, params) => {
     const tempFilename = `${uuidv4()}/rendition.${fmt}`;
 
     // call photoshopActions API
-    const options = await setupPhotoshopActionsOptions(client, rendition.instructions, files);
+    const options = await setuphotoshopActionsOptions(client, rendition.instructions, files);
     const result = await client.applyPhotoshopActions(source.url, tempFilename, options);
     console.log('Response from Photoshop API', result);
     if (result && result.outputs && result.outputs[0].status === 'failed') {

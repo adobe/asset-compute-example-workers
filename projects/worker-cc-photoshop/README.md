@@ -37,7 +37,7 @@ These can be enabled in a AEM Cloud environment by following these steps:
 ## API
 ### Photoshop Action
 
-Uses the [Photoshop Actions API](https://github.com/adobe/aio-lib-photoshop-api#PhotoshopAPI+applyPhotoshopActions)
+Uses the [Photoshop Actions API](https://github.com/adobe/aio-lib-photoshop-api#PhotoshopAPI+applyphotoshopActions)
 REST API: https://adobedocs.github.io/photoshop-api-docs-pre-release/#api-Photoshop-photoshopActions
 
 Supported formats:
@@ -50,20 +50,20 @@ Supported formats:
     "worker": "<custom-worker-url>",
     "name": "rendition.jpg",
     "fmt": "jpg",
-    "photoshopAction": "<presigned-url>"
+    "photoshopActions": "<presigned-url>"
 }
 ```
 
 You can test using our sample [fisheye photoshop action](./files/fisheye.atn).
 
 #### Example Photoshop Action with multiple actions in the set
-If you have an action file with multiple photoshop actions in the set, use the `photoshopActionName` parameter to call only one of the actions.
+If you have an action file with multiple photoshop actions in the set, use the `photoshopActionsName` parameter to call only one of the actions.
 ```
 {
     "worker": "https:/mynamespace.adobeioruntime.net/api/v1/web/myactionname/worker-cc-photoshop",
     "name": "rendition.jpg",
-    "photoshopAction":"<presigned-url>",
-    "photoshopActionName": "Oil Paint Action 1"
+    "photoshopActions":"<presigned-url>",
+    "photoshopActionsName": "Oil Paint Action 1"
 }
 ```
 _Note: All actions in the set will be played if none are specified_
@@ -117,7 +117,7 @@ Review the [Asset Compute Extensibility Documentation](https://experienceleague.
 - For _Endpoint URL_, input the URL of the worker as seen after running `aio app deploy`: 
    - It should look like this: `https://<namespace>.adobeioruntime.net/api/v1/web/<appname>-0.0.1/<worker-name>`
    - _Note: If you see a different hostname: `adobeio-static.net`, your action got deployed with Web Assets. If this was not on purpose, please remove the Web Assets using `aio app delete web-assets`. Actions deployed with Web Assets use different authentification that is not supported out of the box by the Asset Compute Service. See details [here](https://www.adobe.io/apis/experienceplatform/project-firefly/docs.html#!AdobeDocs/project-firefly/master/getting_started/common_troubleshooting.md#action-authentication-errors)._
-- Add `photoshopAction` service parameter and set the value to presigned url for a photoshop action
+- Add `photoshopActions` service parameter and set the value to presigned url for a photoshop action
 - Click on Save
 
 ![Processing Profile](./files/processingProfile.png)
