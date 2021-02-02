@@ -37,7 +37,8 @@ These can be enabled in a AEM Cloud environment by following these steps:
 ## API
 ### Photoshop Action
 
-Uses the [Photoshop Actions API](https://github.com/adobe/aio-lib-photoshop-api#PhotoshopAPI+applyphotoshopActions)
+Uses the [Photoshop Actions API](https://github.com/adobe/aio-lib-photoshop-api#PhotoshopAPI+applyPhotoshopActions)
+
 REST API: https://adobedocs.github.io/photoshop-api-docs-pre-release/#api-Photoshop-photoshopActions
 
 Supported formats:
