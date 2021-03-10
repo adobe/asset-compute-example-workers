@@ -33,10 +33,22 @@ Requirements:
 Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/content/help/en/asset-compute/using/extend/understand-extensibility.html) for more detailed information.
 
 - [Setup a developer environment](https://docs.adobe.com/content/help/en/asset-compute/using/extend/setup-environment.html) including the Firefly project
-  - Make sure to add _Content and Commerce AI_ Service Account (JWT) API to the workspaces
+  - Make sure to add _Content and Commerce AI_ Service Account (JWT) API to the workspaces<sup>†</sup>
 - Select your Firefly project
 - Select the Workspace
 - Click on _Download All_ in the top right corner. This will download the _Adobe I/O Developer Console configuration file_
+
+> †: If you canot add JWT to the API, make sure your admin has given you developer access to the _Content and Commerce AI_ product in admin console.
+
+## For AEM integration:
+
+> this step basically allows your intended AEM instance to access _Content and Commerce AI_ via this worker.
+
+- In Adobe IO console, navigate to projects
+- Find the project belonging to your AEM instance you intent to use this worker for
+  - For example, if your AEMaaCS author URL is `https://author-p1234-e56789.adobeaemcloud.com/aem/start.html` you'll find a project names `AEM-p1234-e56789`
+- In that project, Add _Content and Commerce AI_ API service. Use the existing JWT auth for it.
+- In that project overview, click _Download_ button to download the _Adobe I/O Developer Console configuration file_
 
 ### Deploy
 
@@ -45,6 +57,10 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 - Run `npm install`
 - Run `aio app use <Path to Adobe I/O Developer Console configuration file>`
   - This will setup your `.env` file to point at the Firefly project and workspace
+  - this is the file downloaded from the _firefly project YOU created_. Not the other existing AEM one.
+- run `aio app use <Path to Adobe I/O Developer Console configuration file>`
+  - This is the file downloaded from the _AEM instance firefly project_.
+  - When asked about existing `.env` and `.aio` select `m` or `merged`
 - Run `aio app deploy` to deploy the application into your workspace
 
 ### Review logs
