@@ -9,6 +9,10 @@ In the `projects` directory, you will find examples of Asset Compute workers tha
 
 Simple example of a 3rd party Asset Compute worker. It generates a rendition by simply copying the source file.
 
+## [worker-azure-ai](projects/worker-azure-ai)
+
+Example of an Asset Compute project leveraging the [Azure Cognitive Services API](https://azure.microsoft.com/en-us/services/cognitive-services/).
+
 ## [worker-animal-pictures](projects/worker-animal-pictures)
 
 Example of a 3rd party Asset Compute worker that produces renditions from an HTTP request to an external API based on an incoming parameter.
@@ -20,6 +24,10 @@ Example of a 3rd party Asset Compute Metadata worker. It provides examples of ge
 ## [worker-ccai-colorextract](projects/worker-ccai-colorextract)
 
 Example of a custom Asset Compute Metadata worker leveraging the [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) Color extraction API.
+
+## [worker-ccai-pdfextract](projects/worker-ccai-pdfextract)
+
+Example of a custom Asset Compute Metadata worker leveraging the [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) Keyword extraction API.
 
 ## [worker-cc-photoshop](projects/worker-cc-photoshop)
 
