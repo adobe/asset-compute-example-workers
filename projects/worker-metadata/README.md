@@ -13,7 +13,7 @@ Example of a 3rd party Asset Compute Metadata worker. It provides examples of ge
 
 The generated metadata is merged with the XMP metadata extracted from the asset by AEM. Custom metadata can be shown in AEM by adding a new or modifying an existing [Metadata Schema Form](https://docs.adobe.com/content/help/en/experience-manager-65/assets/administer/metadata-schemas.html).
 
-The worker is based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
+The worker is based on [App Builder](https://developer.adobe.com/app-builder/) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
 ## Install
 
