@@ -1,0 +1,47 @@
+{
+  "project": {
+    "id": "4566206088344566516",
+    "name": "EnglishBlueHalibut",
+    "title": "Adobe Developers Live Commerce Demo",
+    "org": {
+      "id": "105979",
+      "name": "Project Nui",
+      "ims_org_id": "6EEF747D5B27EF9C0A495C46@AdobeOrg"
+    },
+    "workspace": {
+      "id": "4566206088344567147",
+      "name": "delbick",
+      "title": "delbick",
+      "description": "demo workspace",
+      "action_url": "https://105979-englishbluehalibut-delbick.adobeioruntime.net",
+      "app_url": "https://105979-englishbluehalibut-delbick.adobeio-static.net",
+      "details": {
+        "credentials": [
+          {
+            "id": "113243",
+            "name": "Project_1600819295033J",
+            "integration_type": "service"
+          }
+        ],
+        "services": [
+          {
+            "code": "AdobeIOManagementAPISDK",
+            "name": "I/O Management API"
+          },
+          {
+            "code": "AssetComputeSDK",
+            "name": "Asset Compute"
+          },
+          {
+            "code": "ccai-sdk",
+            "name": "Content and Commerce AI"
+          },
+          {
+            "code": "CloudIntegrationSDK",
+            "name": "I/O Events"
+          }
+        ]
+      }
+    }
+  }
+}

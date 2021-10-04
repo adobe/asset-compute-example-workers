@@ -2,7 +2,7 @@
 
 Example of a 3rd party Asset Compute worker. `worker-animal-pictures` produces renditions from an HTTP request to an external API based on an incoming parameter.
 
-It is based on [App Builder](https://developer.adobe.com/app-builder/docs/overview/) and the [aio](https://github.com/adobe/aio-cli) developer tool.
+It is based on [App Builder](https://developer.adobe.com/app-builder/) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
 ## Install
 
