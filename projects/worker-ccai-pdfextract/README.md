@@ -33,7 +33,8 @@ Requirements:
 Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/content/help/en/asset-compute/using/extend/understand-extensibility.html) for more detailed information.
 
 - [Setup a developer environment](https://docs.adobe.com/content/help/en/asset-compute/using/extend/setup-environment.html) including the App Builder project
-  - Make sure to App Builder project
+  - Make sure to add _Content and Commerce AI_ Service Account (JWT) API to the workspaces
+- Select your App Builder project
 - Select the Workspace
 - Click on _Download All_ in the top right corner. This will download the _Adobe I/O Developer Console configuration file_
 
