@@ -2,7 +2,7 @@
 
 Example of a custom Asset Compute Metadata worker leveraging the [Content and Commerce AI](https://docs.adobe.com/content/help/en/experience-platform/intelligent-services/content-commerce-ai/overview.html) Keyword extraction API.
 
-The worker is based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
+The worker is based on [App Builder](https://developer.adobe.com/app-builder/docs/overview/) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
 ## Metadata
 
@@ -28,13 +28,12 @@ Requirements:
 - [Node.js](https://nodejs.org/en/) version 10 or 12
 - [aio cli](https://github.com/adobe/aio-cli)
 
-### Create Firefly Project
+### Create App Builder Project
 
 Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/content/help/en/asset-compute/using/extend/understand-extensibility.html) for more detailed information.
 
-- [Setup a developer environment](https://docs.adobe.com/content/help/en/asset-compute/using/extend/setup-environment.html) including the Firefly project
-  - Make sure to add _Content and Commerce AI_ Service Account (JWT) API to the workspaces
-- Select your Firefly project
+- [Setup a developer environment](https://docs.adobe.com/content/help/en/asset-compute/using/extend/setup-environment.html) including the App Builder project
+  - Make sure to App Builder project
 - Select the Workspace
 - Click on _Download All_ in the top right corner. This will download the _Adobe I/O Developer Console configuration file_
 
@@ -44,7 +43,7 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 - Go to the `worker-ccai-pdfextract` directory
 - Run `npm install`
 - Run `aio app use <Path to Adobe I/O Developer Console configuration file>`
-  - This will setup your `.env` file to point at the Firefly project and workspace
+  - This will setup your `.env` file to point at the App Builder project and workspace
 - Run `aio app deploy` to deploy the application into your workspace
 
 ### Review logs

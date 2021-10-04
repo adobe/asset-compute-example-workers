@@ -19,7 +19,7 @@ These can be enabled in a AEM Cloud environment by following these steps:
 - Log in to <https://console.adobe.io/>
 - Switch to the correct organization in the top right corner. This must be the org where your AEM Cloud environment exists.
 - Switch to the Projects page
-- [Create a new project using the Firefly Template](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en#create-firefly-project). Move into the workspace you would like to work in.
+- [Create a new project using the App Builder Template](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en). Move into the workspace you would like to work in.
 - Add the necessary services for Asset Compute Development:  I/O Management API, Asset Compute, I/O Events
 - Also add the following service necessary for creating this worker:
   - Add _Photoshop API - Creative Cloud Automation Services_:
@@ -85,13 +85,13 @@ Requirements:
 - [aio cli](https://github.com/adobe/aio-cli)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
-### Create Firefly Project
+### Create App Builder Project
 
 Review the [Asset Compute Extensibility Documentation](https://experienceleague.adobe.com/docs/asset-compute/using/extend/understand-extensibility.html?lang=en#extend) for more detailed information.
 
-- [Setup a developer environment](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en#extend) including the Firefly project
+- [Setup a developer environment](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en#extend) including the App Builder project
   - Make sure to add _Photoshop API - Creative Cloud Automation Services_ Service Account (JWT) API to the workspaces
-- Select your Firefly project
+- Select your App Builder project
 - Select the Workspace where you added the Photoshop API service
 - Click on _Download All_ in the top right corner. This will download the _Adobe I/O Developer Console configuration file_
 
@@ -101,7 +101,7 @@ Review the [Asset Compute Extensibility Documentation](https://experienceleague.
 - Go to the `worker-cc-photoshop` directory
 - Run `npm install`
 - Run `aio app use <Path to Adobe I/O Developer Console configuration file>`
-  - This will setup your `.env` to point at the Firefly project and workspace
+  - This will setup your `.env` to point at the App Builder project and workspace
 - Run `aio app deploy` to deploy the application
 
 ### Review logs
@@ -117,7 +117,7 @@ Review the [Asset Compute Extensibility Documentation](https://experienceleague.
 - Add a rendition name and extension
 - For _Endpoint URL_, input the URL of the worker as seen after running `aio app deploy`: 
    - It should look like this: `https://<namespace>.adobeioruntime.net/api/v1/web/<appname>-0.0.1/<worker-name>`
-   - _Note: If you see a different hostname: `adobeio-static.net`, your action got deployed with Web Assets. If this was not on purpose, please remove the Web Assets using `aio app delete web-assets`. Actions deployed with Web Assets use different authentification that is not supported out of the box by the Asset Compute Service. See details [here](https://www.adobe.io/apis/experienceplatform/project-firefly/docs.html#!AdobeDocs/project-firefly/master/getting_started/common_troubleshooting.md#action-authentication-errors)._
+   - _Note: If you see a different hostname: `adobeio-static.net`, your action got deployed with Web Assets. If this was not on purpose, please remove the Web Assets using `aio app delete web-assets`. Actions deployed with Web Assets use different authentification that is not supported out of the box by the Asset Compute Service. See details [here](https://www.adobe.io/app-builder/docs/getting_started/common_troubleshooting/#action-authentication-errors)._
 - Add `photoshopActions` service parameter and set the value to presigned url for a photoshop action
 - Click on Save
 

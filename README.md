@@ -3,7 +3,7 @@
 
 # Asset Compute Worker Examples
 
-In the `projects` directory, you will find examples of Asset Compute workers that are based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
+In the `projects` directory, you will find examples of Asset Compute workers that are based on [App Builder](https://developer.adobe.com/app-builder/docs/overview/) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
 ## [worker-basic](projects/worker-basic)
 

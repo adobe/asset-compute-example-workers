@@ -2,7 +2,7 @@
 
 Simple example of a 3rd party Asset Compute worker. It generates a rendition by simply [copying](https://github.com/adobe/asset-compute-example-workers/blob/master/projects/worker-basic/worker-basic.js#L19) the source file.
 
-It is based on [Project Firefly](https://github.com/AdobeDocs/project-firefly) and the [aio](https://github.com/adobe/aio-cli) developer tool.
+It is based on [App Builder](https://developer.adobe.com/app-builder/docs/overview/) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
 ## Install
 
