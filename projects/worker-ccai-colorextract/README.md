@@ -45,7 +45,7 @@ Review the [Asset Compute Extensibility Documentation](https://docs.adobe.com/co
 - Go to the `worker-ccai-colorextract` directory
 - Run `npm install`
 - Run `aio app use <Path to Adobe I/O Developer Console configuration file>`
-  - This will setup your `.env` to point at the App Builder project and workspace
+  - This will setup your `.env` file to point at the App Builder project and workspace
 - Run `aio app deploy` to deploy the application
 
 ### Review logs
