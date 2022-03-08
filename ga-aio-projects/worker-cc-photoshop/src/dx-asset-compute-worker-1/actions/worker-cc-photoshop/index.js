@@ -80,7 +80,7 @@ async function setuphotoshopActionsOptions(client, instructions, files) {
         actions: [{
             href: photoshopActions
         }]
-    }
+    };
     if (options && Array.isArray(options.actions) && instructions.photoshopActionsName) {
         options.actions[0].actionName = instructions.photoshopActionsName;
     }
