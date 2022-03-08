@@ -81,7 +81,7 @@ _Note: All actions in the set will be played if none are specified_
 Requirements:
 
 - Access to _Photoshop API - Creative Cloud Automation Services_ in the [Adobe Developer Console](https://console.adobe.io).
-- [Node.js](https://nodejs.org/en/), version 10 or 12
+- [Node.js](https://nodejs.org/en/), version 12 or 14
 - [aio cli](https://github.com/adobe/aio-cli)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
