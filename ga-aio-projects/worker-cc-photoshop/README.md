@@ -20,7 +20,7 @@ These can be enabled in a AEM Cloud environment by following these steps:
 - Switch to the organization where your AEM Cloud environment exists in the top right corner.
 - Switch to the Projects page
 - [Create a new project using the App Builder Template](https://experienceleague.adobe.com/docs/asset-compute/using/extend/setup-environment.html?lang=en). Move into the workspace you would like to work in.
-- Add the necessary services for Asset Compute Development:  I/O Management API, Asset Compute, I/O Events
+- Add the following services for Asset Compute Development:  I/O Management API, Asset Compute, I/O Events
 - Also add the following service necessary for creating this worker:
   - Add _Photoshop API - Creative Cloud Automation Services_:
     - Click on _Add to Project_
