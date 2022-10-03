@@ -13,6 +13,9 @@ runtimeManifest:
       actions:
         worker-azure-ocr:
           function: actions/worker-azure-ocr/index.js
+          inputs:
+            AZURE_OCP_KEY: ${AZURE_OCP_KEY}
+            AZURE_OCP_ENDPOINT: ${AZURE_OCP_ENDPOINT}
           web: 'yes'
           runtime: 'nodejs:14'
           limits:
@@ -21,6 +24,9 @@ runtimeManifest:
             require-adobe-auth: true
         worker-azure-tagging:
           function: actions/worker-azure-tagging/index.js
+          inputs:
+            AZURE_OCP_KEY: ${AZURE_OCP_KEY}
+            AZURE_OCP_ENDPOINT: ${AZURE_OCP_ENDPOINT}
           web: 'yes'
           runtime: 'nodejs:14'
           limits:

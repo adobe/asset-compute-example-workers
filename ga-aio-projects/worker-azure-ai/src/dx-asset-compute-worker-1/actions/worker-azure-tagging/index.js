@@ -7,6 +7,7 @@ const fs = require('fs').promises;
 const DEFAULT_LANGUAGE = "en";
 
 exports.main = worker(async (source, rendition, params) => {
+    console.log('Azure tagging worker.');
     // get Azure credentials for API
     let subscriptionKey = params && params.AZURE_OCP_KEY;
     let endpoint = params && params.AZURE_OCP_ENDPOINT;
@@ -32,13 +33,14 @@ exports.main = worker(async (source, rendition, params) => {
             "Ocp-Apim-Subscription-Key" : subscriptionKey
         }
     };
-
+    console.log(`Running azure ocr request with source url: ${source.url}; endpoint:${url}`);
     const response = await fetch(url, options);
     const jsonResponse = await response.json();
+    console.log('JSON response', jsonResponse);
     if (jsonResponse.code || jsonResponse.error) {  
         // Format error code and message like the following:
         // `The Azure OCR API failed with FailedToProcess: Could not extract image features`
-        throw new GenericError(`The Azure Analyze Image Api failed with ${jsonResponse.code}: ${jsonResponse.error}`);
+        throw new GenericError(`The Azure Analyze Image Api failed with ${jsonResponse.code}: ${JSON.stringify(jsonResponse.error)}`);
     }
 
     await fs.writeFile(rendition.path, JSON.stringify(jsonResponse));
