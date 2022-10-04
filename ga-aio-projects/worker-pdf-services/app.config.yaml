@@ -1,0 +1,3 @@
+extensions:
+  dx/asset-compute/worker/1:
+    $include: src/dx-asset-compute-worker-1/ext.config.yaml
