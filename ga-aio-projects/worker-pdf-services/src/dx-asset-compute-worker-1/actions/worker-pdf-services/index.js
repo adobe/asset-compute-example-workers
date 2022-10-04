@@ -4,6 +4,12 @@ const PDFServicesSdk = require('@adobe/pdfservices-node-sdk');
 const fse = require('fs-extra');
 
 const FILE_CORRUPT_ERROR_CODE = 'CORRUPT_DOCUMENT';
+const OPERATIONS_MAP = {
+    PDF_PROPERTIES: 'pdfProperties',
+    CREATE_PDF: 'createPDF',
+    EXPORT_PDF: 'exportPDF',
+    COMPRESS_PDF: 'compressPDF'
+};
 
 function getCredentials(params) {
     // log whether the params contain Doc Cloud creds for debugging purposes
@@ -54,27 +60,24 @@ async function validateSource(sourcePath) {
 }
 
 function getPDFOperation(operation, fmt) {
-    if (operation === 'createPDF') {
+    if (operation === OPERATIONS_MAP.CREATE_PDF) {
+        console.log('Creating a PDF.');
         return PDFServicesSdk.CreatePDF.Operation.createNew();
-    } else if (operation === 'exportPDF') {
+    } else if (operation === OPERATIONS_MAP.EXPORT_PDF) {
+        console.log('Exporting file to a PDF.');
         const targetFmt = fmt.toUpperCase();
-        console.log('exportPDF.SupportedTargetFormats', PDFServicesSdk.ExportPDF.SupportedTargetFormats[targetFmt])
         return PDFServicesSdk.ExportPDF.Operation.createNew(PDFServicesSdk.ExportPDF.SupportedTargetFormats[targetFmt]);
+    } else if (operation === OPERATIONS_MAP.PDF_PROPERTIES) {
+        console.log('Getting PDF Properties for a PDF.');
+        return PDFServicesSdk.PDFProperties.Operation.createNew();
+    } else if (operation === OPERATIONS_MAP.COMPRESS_PDF) {
+        console.log('Compressing a PDF.');
+        return PDFServicesSdk.CompressPDF.Operation.createNew();
     } else {
         throw new GenericError(`PDF Operation not supported: ${operation}`);
     }
 }
 
-/**
- * Small wrapper around `worker` asynchronous callback to eliminate testing complexities
- * Additionally to organize code nicely in case we add more pdfservices in the future.
- * (See ex Operation structure above like we do for worker-creative)
- * 
- * Note: The reason this was moved to its own file instead of a non-exported function in worker.js
- * is because `rewire` was causing mocha tests to hang. Additionally `rewire` is not ESM compatible
- * so if we want to move to ESM, we wouldn't be able to use it anyway.
- * https://github.com/jhnns/rewire#limitations
- */
 async function getPDFServicesRendition(source, rendition, params={}) {
 
     // validate source exists and is not empty
@@ -103,6 +106,9 @@ async function getPDFServicesRendition(source, rendition, params={}) {
         
         // Execute the operation and Save the result to the specified location.
         const result = await pdfOperation.execute(executionContext);
+        if (rendition.instructions.operation === 'pdfProperties') {
+            return fse.writeJSON(rendition.path, result);
+        }
         return result.saveAsFile(rendition.path);
     } catch (err) {
         let errorMessage;

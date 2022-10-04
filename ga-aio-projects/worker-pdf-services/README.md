@@ -4,6 +4,8 @@ Worker for calling PDF Services API
 
 Documentation: https://developer.adobe.com/document-services/apis/pdf-services/
 
+Samples: https://github.com/adobe/pdfservices-node-sdk-samples
+
 ## Getting Credentials
 1. Navigate to [PDF services documentation](https://developer.adobe.com/document-services/apis/pdf-services/).
 2. Click on `Start free trial` (make sure to login with a non-enterprise email, we suggest a personal email)
@@ -18,8 +20,15 @@ Documentation: https://developer.adobe.com/document-services/apis/pdf-services/
 - `aio app run` to start your local Dev server
 - App will run asset compute devtool
 
-### Example Rendition Object
-#### Create PDFs
+## Supported Operations
+### CreatePDF
+Create PDFs from Microsoft Word, PowerPoint, and Excel files; convert DOC to PDF, DOCX to PDF, PPT to PDF, PPTX to PDF, XLS to PDF, XLSX to PDF
+
+Documentation: https://documentcloud.adobe.com/document-services/index.html#post-createPDF
+
+Supported Source Formats: DOC, DOCX, PPT, PPTX, XLS, XLSX, TXT, RTF
+
+Rendition Object:
 ```
 {
     "renditions": [
@@ -32,11 +41,14 @@ Documentation: https://developer.adobe.com/document-services/apis/pdf-services/
     ]
 }
 ```
-### Export PDFs
-api: https://developer.adobe.com/document-services/docs/apis/#tag/Export-PDF
+### ExportPDF
+Export a PDF file into a number of supported formats
 
-supported formats: doc, docx, pptx, xlsx, rtf
+Documentation: https://developer.adobe.com/document-services/docs/apis/#tag/Export-PDF
 
+Supported Rendition Formats: doc, docx, pptx, xlsx, rtf
+
+Rendition Object:
 ```
 {
     "renditions": [
@@ -45,6 +57,46 @@ supported formats: doc, docx, pptx, xlsx, rtf
             "name": "rendition.docx",
             "fmt": "docx",
             "operation": "exportPDF"
+        }
+    ]
+}
+```
+### CompressPDF
+Compress PDFs to reduce the file size prior to performing workflow operations that use bandwidth or memory.
+
+Documentation: https://developer.adobe.com/document-services/docs/apis/#tag/Compress-PDF
+
+Supported Formats: PDF
+
+Rendition Object:
+```
+{
+    "renditions": [
+        {
+            "worker": "https://mynamespace.adobeioruntime.net/api/v1/web/dx-asset-compute-worker-1/worker-pdf-services",
+            "name": "rendition.pdf",
+            "fmt": "pdf",
+            "operation": "compressPDF"
+        }
+    ]
+}
+```
+### PDFProperties
+Extract basic information about the document such as page count, pdf version, if the file is encrypted, if the file linearized, if the file contains embedded files etc.
+
+Documentation: https://developer.adobe.com/document-services/docs/apis/#tag/PDF-Properties
+
+Supported Source Formats: PDF
+
+Rendition Object:
+```
+{
+    "renditions": [
+        {
+            "worker": "https://mynamespace.adobeioruntime.net/api/v1/web/dx-asset-compute-worker-1/worker-pdf-services",
+            "name": "rendition.json",
+            "fmt": "json",
+            "operation": "pdfProperties"
         }
     ]
 }
