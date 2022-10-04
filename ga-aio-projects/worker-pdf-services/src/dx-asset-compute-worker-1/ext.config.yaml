@@ -11,8 +11,8 @@ runtimeManifest:
     dx-asset-compute-worker-1:
       license: Apache-2.0
       actions:
-        worker:
-          function: actions/worker/index.js
+        worker-pdf-services:
+          function: actions/worker-pdf-services/index.js
           inputs:
             docCloudClientId: ${DOC_CLOUD_CLIENT_ID},
             docCloudClientSecret: ${DOC_CLOUD_CLIENT_SECRET},

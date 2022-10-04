@@ -4,6 +4,11 @@ Worker for calling PDF Services API
 
 Documentation: https://developer.adobe.com/document-services/apis/pdf-services/
 
+## Getting Credentials
+1. Navigate to [PDF services documentation](https://developer.adobe.com/document-services/apis/pdf-services/).
+2. Click on `Start free trial` (make sure to login with a non-enterprise email, we suggest a personal email)
+3. Follow instructions to create new credentials
+
 ## Setup
 
 - Populate the `.env` file in the project root and fill it as shown [below](#env)
@@ -11,10 +16,11 @@ Documentation: https://developer.adobe.com/document-services/apis/pdf-services/
 ## Local Dev
 
 - `aio app run` to start your local Dev server
-- App will run on `localhost:9080` by default
+- App will run asset compute devtool
 
-By default the UI will be served locally but actions will be deployed and served from Adobe I/O Runtime. To start a
-local serverless stack and also run your actions locally use the `aio app run --local` option.
+### Example Rendition Object
+```
+```
 
 ## Test & Coverage
 
@@ -46,6 +52,7 @@ You can generate this file using the command `aio app use`.
 # DOC_CLOUD_ACCOUNT_ID=
 # DOC_CLOUD_PRIVATE_KEY_BASE64=
 ```
+- to base64 your private key, use `base64 -i <path-to-private.key>`
 
 ## Debugging in VS Code
 

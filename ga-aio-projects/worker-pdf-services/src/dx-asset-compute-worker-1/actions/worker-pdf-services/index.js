@@ -3,6 +3,8 @@ const { worker, GenericError, SourceUnsupportedError } = require('@adobe/asset-c
 const PDFServicesSdk = require('@adobe/pdfservices-node-sdk');
 const fse = require('fs-extra');
 
+const FILE_CORRUPT_ERROR_CODE = 'CORRUPT_DOCUMENT';
+
 function getCredentials(params) {
     // log whether the params contain Doc Cloud creds for debugging purposes
     // Doc Cloud creds should be from the params (as default params deployed onto the action)
@@ -73,6 +75,7 @@ async function getPDFServicesRendition(source, rendition, params={}) {
     let credentials;
     try {
         credentials = getCredentials(params);
+        console.log(credentials)
     } catch (error) {
         console.log(error);
         throw new GenericError(`Failed to get credentials for PDF Services: ${error.message || error}`);
