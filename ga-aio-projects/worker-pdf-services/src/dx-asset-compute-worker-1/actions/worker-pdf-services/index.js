@@ -75,7 +75,6 @@ async function getPDFServicesRendition(source, rendition, params={}) {
     let credentials;
     try {
         credentials = getCredentials(params);
-        console.log(credentials)
     } catch (error) {
         console.log(error);
         throw new GenericError(`Failed to get credentials for PDF Services: ${error.message || error}`);

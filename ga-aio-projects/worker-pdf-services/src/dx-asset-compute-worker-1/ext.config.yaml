@@ -14,11 +14,10 @@ runtimeManifest:
         worker-pdf-services:
           function: actions/worker-pdf-services/index.js
           inputs:
-            docCloudClientId: ${DOC_CLOUD_CLIENT_ID},
-            docCloudClientSecret: ${DOC_CLOUD_CLIENT_SECRET},
-            docCloudTier: ${DOC_CLOUD_TIER},
-            docCloudOrgId: ${DOC_CLOUD_ORG_ID},
-            docCloudAccountId: ${DOC_CLOUD_ACCOUNT_ID},
+            docCloudClientId: ${DOC_CLOUD_CLIENT_ID}
+            docCloudClientSecret: ${DOC_CLOUD_CLIENT_SECRET}
+            docCloudOrgId: ${DOC_CLOUD_ORG_ID}
+            docCloudAccountId: ${DOC_CLOUD_ACCOUNT_ID}
             docCloudPrivateKey: ${DOC_CLOUD_PRIVATE_KEY_BASE64}
           web: 'yes'
           runtime: 'nodejs:14'
