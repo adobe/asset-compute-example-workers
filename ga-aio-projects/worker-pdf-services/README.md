@@ -19,7 +19,35 @@ Documentation: https://developer.adobe.com/document-services/apis/pdf-services/
 - App will run asset compute devtool
 
 ### Example Rendition Object
+#### Create PDFs
 ```
+{
+    "renditions": [
+        {
+            "worker": "https://mynamespace.adobeioruntime.net/api/v1/web/dx-asset-compute-worker-1/worker-pdf-services",
+            "name": "rendition.pdf",
+            "fmt": "pdf",
+            "operation": "createPDF"
+        }
+    ]
+}
+```
+### Export PDFs
+api: https://developer.adobe.com/document-services/docs/apis/#tag/Export-PDF
+
+supported formats: doc, docx, pptx, xlsx, rtf
+
+```
+{
+    "renditions": [
+        {
+            "worker": "https://mynamespace.adobeioruntime.net/api/v1/web/dx-asset-compute-worker-1/worker-pdf-services",
+            "name": "rendition.docx",
+            "fmt": "docx",
+            "operation": "exportPDF"
+        }
+    ]
+}
 ```
 
 ## Test & Coverage

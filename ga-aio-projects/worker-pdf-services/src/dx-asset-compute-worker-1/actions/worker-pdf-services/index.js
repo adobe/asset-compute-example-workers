@@ -53,6 +53,18 @@ async function validateSource(sourcePath) {
     }
 }
 
+function getPDFOperation(operation, fmt) {
+    if (operation === 'createPDF') {
+        return PDFServicesSdk.CreatePDF.Operation.createNew();
+    } else if (operation === 'exportPDF') {
+        const targetFmt = fmt.toUpperCase();
+        console.log('exportPDF.SupportedTargetFormats', PDFServicesSdk.ExportPDF.SupportedTargetFormats[targetFmt])
+        return PDFServicesSdk.ExportPDF.Operation.createNew(PDFServicesSdk.ExportPDF.SupportedTargetFormats[targetFmt]);
+    } else {
+        throw new GenericError(`PDF Operation not supported: ${operation}`);
+    }
+}
+
 /**
  * Small wrapper around `worker` asynchronous callback to eliminate testing complexities
  * Additionally to organize code nicely in case we add more pdfservices in the future.
@@ -83,14 +95,14 @@ async function getPDFServicesRendition(source, rendition, params={}) {
     try {
         // Create an ExecutionContext using credentials and create a new operation instance.
         const executionContext = PDFServicesSdk.ExecutionContext.create(credentials);
-        const createPdfOperation = PDFServicesSdk.CreatePDF.Operation.createNew();
+        const pdfOperation = getPDFOperation(rendition.instructions.operation, rendition.instructions.fmt);
 
         // Set operation input from a source file.
         const input = PDFServicesSdk.FileRef.createFromLocalFile(source.path);
-        createPdfOperation.setInput(input);
+        pdfOperation.setInput(input);
         
         // Execute the operation and Save the result to the specified location.
-        const result = await createPdfOperation.execute(executionContext);
+        const result = await pdfOperation.execute(executionContext);
         return result.saveAsFile(rendition.path);
     } catch (err) {
         let errorMessage;
