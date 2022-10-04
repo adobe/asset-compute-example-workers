@@ -22,6 +22,8 @@ runtimeManifest:
           web: 'yes'
           runtime: 'nodejs:14'
           limits:
-            concurrency: 10
+            concurrency: 1
+            timeout: 600000
+            memory: 512
           annotations:
             require-adobe-auth: true

@@ -21,25 +21,6 @@ Samples: https://github.com/adobe/pdfservices-node-sdk-samples
 - App will run asset compute devtool
 
 ## Supported Operations
-### CreatePDF
-Create PDFs from Microsoft Word, PowerPoint, and Excel files; convert DOC to PDF, DOCX to PDF, PPT to PDF, PPTX to PDF, XLS to PDF, XLSX to PDF
-
-Documentation: https://documentcloud.adobe.com/document-services/index.html#post-createPDF
-
-Supported Source Formats: DOC, DOCX, PPT, PPTX, XLS, XLSX, TXT, RTF
-
-Rendition Object:
-```
-{
-    "renditions": [
-        {
-            "worker": "https://mynamespace.adobeioruntime.net/api/v1/web/dx-asset-compute-worker-1/worker-pdf-services",
-            "name": "rendition.pdf",
-            "fmt": "pdf",
-            "operation": "createPDF"
-        }
-    ]
-}
 ```
 ### ExportPDF
 Export a PDF file into a number of supported formats
@@ -101,6 +82,25 @@ Rendition Object:
     ]
 }
 ```
+### CreatePDF
+Create PDFs from Microsoft Word, PowerPoint, and Excel files; convert DOC to PDF, DOCX to PDF, PPT to PDF, PPTX to PDF, XLS to PDF, XLSX to PDF
+
+Documentation: https://documentcloud.adobe.com/document-services/index.html#post-createPDF
+
+Supported Source Formats: DOC, DOCX, PPT, PPTX, XLS, XLSX, TXT, RTF
+
+Rendition Object:
+```
+{
+    "renditions": [
+        {
+            "worker": "https://mynamespace.adobeioruntime.net/api/v1/web/dx-asset-compute-worker-1/worker-pdf-services",
+            "name": "rendition.pdf",
+            "fmt": "pdf",
+            "operation": "createPDF"
+        }
+    ]
+}
 
 ## Test & Coverage
 
