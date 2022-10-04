@@ -5,14 +5,23 @@ Example of an Asset Compute project leveraging the [Azure Cognitive Services API
 This project contains two workers: `worker-azure-ocr` and `worker-azure-tagging` based on [App Builder](https://developer.adobe.com/app-builder/) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
 ## worker-azure-ocr
+This worker uses the [Azure OCR API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts/node-print-text) to detect and extract text in an image.
+See more details here: https://westcentralus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-1-ga/operations/56f91f2e778daf14a499f20d
 
-This worker uses the [Azure OCR API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts/node-print-text).
+Supported image formats: JPEG, PNG, GIF, BMP.
+
+- Image file size must be less than 4MB.
+- Image dimensions must be between 50 x 50 and 4200 x 4200 pixels, and the image cannot be larger than 10 megapixels.
 
 
 ## worker-azure-tagging
+This worker uses the [Azure Analyze Image API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts/node-analyze) to extract a rich set of visual features based on the image content.
+See more details here: https://westcentralus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-1-ga/operations/56f91f2e778daf14a499f21b
 
-This worker uses the [Azure Analyze Image API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts/node-analyze).
+Supported image formats: JPEG, PNG, GIF, BMP.
 
+- Image file size must be less than 4MB.
+- Image dimensions must be at least 50 x 50.
 
 ## Setup
 

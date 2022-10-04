@@ -37,10 +37,13 @@ exports.main = worker(async (source, rendition, params) => {
     const response = await fetch(url, options);
     const jsonResponse = await response.json();
     console.log('JSON response', jsonResponse);
-    if (jsonResponse.code || jsonResponse.error) {  
+    if (jsonResponse.code) {
         // Format error code and message like the following:
         // `The Azure OCR API failed with FailedToProcess: Could not extract image features`
-        throw new GenericError(`The Azure OCR Api failed with ${jsonResponse.code}: ${JSON.stringify(jsonResponse.error)}`);
+        throw new GenericError(`The Azure OCR Api failed with ${jsonResponse.code}: ${JSON.stringify(jsonResponse.message)}`);
+    }
+    if (jsonResponse.error) {
+        throw new GenericError(`The Azure OCR Api failed with: ${JSON.stringify(jsonResponse.error)}`);
     }
 
     await fs.writeFile(rendition.path, JSON.stringify(jsonResponse));
