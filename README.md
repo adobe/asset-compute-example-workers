@@ -8,7 +8,7 @@ In the `projects` directory, you will find examples of Asset Compute workers tha
 
 ## [worker-pdf-services](ga-aio-projects/worker-pdf-services)
 
-Worker for calling PDF Services API
+Worker for calling Adobe PDF Services API
 
 ## [worker-cc-photoshop](ga-aio-projects/worker-cc-photoshop)
 The CC Photoshop Api Worker wraps the Photoshop APIs to be used by AEM. It is built on top of [aio-lib-photoshop](https://github.com/adobe/aio-lib-photoshop-api).
