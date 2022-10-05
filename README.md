@@ -5,6 +5,19 @@
 
 In the `projects` directory, you will find examples of Asset Compute workers that are based on [App Builder](https://developer.adobe.com/app-builder/) and the [aio](https://github.com/adobe/aio-cli) developer tool.
 
+
+## [worker-pdf-services](ga-aio-projects/worker-pdf-services)
+
+Worker for calling PDF Services API
+
+## [worker-cc-photoshop](ga-aio-projects/worker-cc-photoshop)
+The CC Photoshop Api Worker wraps the Photoshop APIs to be used by AEM. It is built on top of [aio-lib-photoshop](https://github.com/adobe/aio-lib-photoshop-api).
+
+## [worker-azure-ai](ga-aio-projects/worker-azure-ai)
+
+Example of an Asset Compute project leveraging the [Azure Cognitive Services API](https://azure.microsoft.com/en-us/services/cognitive-services/). All of the code in this worker originated from Justin Calloway's [internship project](https://git.corp.adobe.com/calloway/azure_worker).
+
+# Older Structured Workers (Before App Builder GA)
 ## [worker-basic](projects/worker-basic)
 
 Simple example of a 3rd party Asset Compute worker. It generates a rendition by simply copying the source file.
