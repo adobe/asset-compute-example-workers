@@ -21,7 +21,7 @@ Samples: https://github.com/adobe/pdfservices-node-sdk-samples
 - App will run asset compute devtool
 
 ## Supported Operations
-```
+
 ### ExportPDF
 Export a PDF file into a number of supported formats
 
@@ -101,7 +101,7 @@ Rendition Object:
         }
     ]
 }
-
+```
 ## Test & Coverage
 
 - Run `aio app test` to run unit tests for ui and actions
