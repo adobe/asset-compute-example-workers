@@ -101,7 +101,7 @@ Rendition Object:
         }
     ]
 }
-
+```
 ## Test & Coverage
 
 - Run `aio app test` to run unit tests for ui and actions
