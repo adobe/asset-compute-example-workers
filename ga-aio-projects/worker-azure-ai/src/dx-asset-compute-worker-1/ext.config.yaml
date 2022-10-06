@@ -1,0 +1,35 @@
+operations:
+  workerProcess:
+    - type: action
+      impl: dx-asset-compute-worker-1/worker
+hooks:
+  post-app-run: adobe-asset-compute devtool
+  test: adobe-asset-compute test-worker
+actions: actions
+runtimeManifest:
+  packages:
+    dx-asset-compute-worker-1:
+      license: Apache-2.0
+      actions:
+        worker-azure-ocr:
+          function: actions/worker-azure-ocr/index.js
+          inputs:
+            AZURE_OCP_KEY: ${AZURE_OCP_KEY}
+            AZURE_OCP_ENDPOINT: ${AZURE_OCP_ENDPOINT}
+          web: 'yes'
+          runtime: 'nodejs:14'
+          limits:
+            concurrency: 10
+          annotations:
+            require-adobe-auth: true
+        worker-azure-tagging:
+          function: actions/worker-azure-tagging/index.js
+          inputs:
+            AZURE_OCP_KEY: ${AZURE_OCP_KEY}
+            AZURE_OCP_ENDPOINT: ${AZURE_OCP_ENDPOINT}
+          web: 'yes'
+          runtime: 'nodejs:14'
+          limits:
+            concurrency: 10
+          annotations:
+            require-adobe-auth: true
